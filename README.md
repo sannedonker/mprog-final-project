@@ -11,6 +11,8 @@ while being on track. My idea is that the screen is the track and if you get out
 While being on track you have to avoid the blockers which pop up at the top of your screen and go down at the speed you are skating (it 
 will look like you are scrolling on yout screen through a track filled with blockers, but then automatically).
 
+![alt text](https://github.com/sannedonker/mprog-final-project/blob/master/app%20project%20idee%201.png)
+
 For every blocker you pass you earn a point. Blockers can move laterally (from left to right) over the screen. You can avoid them by
 pressing the buttons to move left and right. When you get hit (you touch a blocker) or get out of bounds (are outside of the track) you die.
 The amount of points you scored is your score. There will be a screen with the top 5 scores.
