@@ -1,21 +1,42 @@
-# mprog-final-project
+# Eindproject -- tafel oefen app
 Sanne Donker, 10780416
-An app that let's you 'play' roller derby.
 
-There aren't a lot of roller derby (a full body contact sport on rollerskates) related apps. 
-Since derby often is a way of life I thought it would be fun to create an app that allows you to also play derby on your phone.
-That way people can get invested in derby even more!
+## Concept
+Er zijn al veel apps op de markt waarbij je de tafels van 1 t/m 10 kan oefenen. Echter houdt geen van deze apps bij welke tafels de gebruiker nog niet kent. Daarom is een app die dit wel bijhoudt op dit moment nog een gemis op de markt.
+Het hoofddoel van de app is dus om de tafels gehusseld te kunnen oefenen waarbij de tafels die moeilijker worden gevonden met een grotere kans voorkomen.
 
-It's practically impossible to simulate real derby play in an app. It however is possible to simulate a jammer who has to avoid blockers
-while being on track. My idea is that the screen is the track and if you get out of bounds (outside of the track) you die in the game.
-While being on track you have to avoid the blockers which pop up at the top of your screen and go down at the speed you are skating (it 
-will look like you are scrolling on yout screen through a track filled with blockers, but then automatically).
+De app houdt dus bij welke sommen van de tafels de gebruiker al beheersd en welke nog niet. De beheersing van een som wordt opgedeeld in 4 verschillende categorie\"en:
+groen: de gebruiker heeft de som goed en in minder dan 3 seconden beantwoord (gememoriseerd).
+geel: de gebruiker heeft de som goed en in minder dan 5 seconden beantwoord (geautomatiseerd).
+oranje: de gebruiker heeft de som goed en doet er meer dan 5 seconden over om te antwoorden.
+rood: de gebruiker heeft de som verkeerd geantwoord.
 
-![alt text](https://github.com/sannedonker/mprog-final-project/blob/master/app%20project%20idee%201.png)
+## Visualisatie
+De app heeft verschillende mogelijkheden en deze zullen allemaal beschikbaar zijn vanaf het hoofdscherm.
 
-For every blocker you pass you earn a point. Blockers can move laterally (from left to right) over the screen. You can avoid them by
-pressing the buttons to move left and right. When you get hit (you touch a blocker) or get out of bounds (are outside of the track) you die.
-The amount of points you scored is your score. There will be a screen with the top 5 scores.
+### Start rekenen
+Wanneer er op start rekenen wordt geklikt wordt de gebruiker naar het rekenscherm gestuurd. Hier krijgt de gebruiker 20 willekeurige sommen. Hoe langer de gebruiker de app gebruikt hoe beter de persoonlijke sommen worden afgesteld.
+![alt text](https://github.com/sannedonker/mprog-final-project/blob/master/doc/scherm1.png)
 
-Hard parts of the problem are letting the blockers move laterally and making sure that the screen keeps scrolling (optionally faster when
-you've earned more points). It also might be difficult to place the blockers on random places on the track.
+### Specifiek oefenen
+Voor de gebruiker is het ook mogelijk om specifieke tafels te oefenen. Hierbij kan de gebruiker de tafels aanklikken die moeilijk worden gevonden en meer geoefend willen worden. De sommen van deze tafels worden vervolgens gehusseld laten zien aan de gebruiker in het rekenscherm. Na 15 sommen krijgt de gebruiker meteen te zien welke sommen hij/zij goed had. Deze resultaten worden niet onthouden. Deze mogelijkheid van de app is een extra optie (wordt pas gemaakt als de app goed werkend is).
+![alt text](https://github.com/sannedonker/mprog-final-project/blob/master/doc/scherm2.png)
+
+### Resultaten
+De resultaten die de gebruiker heeft, kunnen bekeken worden. Er is een algemeen overzicht waarin alle tafels te zien zijn en een specifiek overzicht van een tafel als op die tafel geklikt wordt.
+
+![alt text](https://github.com/sannedonker/mprog-final-project/blob/master/doc/scherm3.png)
+
+### Reset
+Na langer gebruik kan het zo zijn dat de gebruiker zijn of haar resultaten wil wissen zodat die met een schone lij kan beginnen met oefenen. Daarom is het mogelijk om alle behaalde resultaten te wissen en de app dus te resetten naar de begin toestand.
+
+
+![alt text](https://github.com/sannedonker/mprog-final-project/blob/master/doc/scherm4.png)
+
+### Informatie
+Hier kan de gebruiker extra uitleg vinden over de werking van de app. Ook vind de gebruiker hier uitleg over wat de verschillende kleuren inhouden.
+
+![alt text](https://github.com/sannedonker/mprog-final-project/blob/master/doc/scherm5.png)
+
+## Moeilijkheden
+Een ingewikkeld punt aan de app is een manier te bedenken om sommen die moeilijk worden gevonden vaker te laten voorkomen. Ook is het moeilijk om bij langer gebruik de sommen te categoriseren. In welke categorie valt een som die eerst 5x fout wordt beantwoord en daarna 1x goed? In welke categorie valt een som die eerst 5x goed wordt beantwoord en daarna 1x fout?
