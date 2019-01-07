@@ -38,5 +38,8 @@ Hier kan de gebruiker extra uitleg vinden over de werking van de app. Ook vind d
 
 ![alt text](https://github.com/sannedonker/mprog-final-project/blob/master/doc/scherm5.png)
 
+### Optioneel
+Als extra functie zouden er troffeeen aan toegevoegd kunnen worden. Dit houdt in dat je als je een tafel helemaal gememoriseerd hebt, een x aantal keer specifieke tafels hebt geoefend, alle sommen een keer hebt gemaakt een troffee krijgt. Deze trofeeen zijn te zijn in een troffee gallerij die bereikbaar is vanaf het startscherm.
+
 ## Moeilijkheden
 Een ingewikkeld punt aan de app is een manier te bedenken om sommen die moeilijk worden gevonden vaker te laten voorkomen. Ook is het moeilijk om bij langer gebruik de sommen te categoriseren. In welke categorie valt een som die eerst 5x fout wordt beantwoord en daarna 1x goed? In welke categorie valt een som die eerst 5x goed wordt beantwoord en daarna 1x fout?
