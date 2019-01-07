@@ -19,7 +19,7 @@ Wanneer er op start rekenen wordt geklikt wordt de gebruiker naar het rekenscher
 ![alt text](https://github.com/sannedonker/mprog-final-project/blob/master/doc/scherm1.png)
 
 ### Specifiek oefenen
-Voor de gebruiker is het ook mogelijk om specifieke tafels te oefenen. Hierbij kan de gebruiker de tafels aanklikken die moeilijk worden gevonden en meer geoefend willen worden. De sommen van deze tafels worden vervolgens gehusseld laten zien aan de gebruiker in het rekenscherm. Na 15 sommen krijgt de gebruiker meteen te zien welke sommen hij/zij goed had. Deze resultaten worden niet onthouden. Deze mogelijkheid van de app is een extra optie (wordt pas gemaakt als de app goed werkend is).
+Voor de gebruiker is het ook mogelijk om specifieke tafels te oefenen. Hierbij kan de gebruiker de tafels aanklikken die moeilijk worden gevonden en meer geoefend willen worden. De sommen van deze tafels worden vervolgens gehusseld laten zien aan de gebruiker in het rekenscherm. Na 15 sommen krijgt de gebruiker meteen te zien welke sommen hij/zij goed had. Deze resultaten worden niet onthouden.
 ![alt text](https://github.com/sannedonker/mprog-final-project/blob/master/doc/scherm2.png)
 
 ### Resultaten
@@ -39,7 +39,15 @@ Hier kan de gebruiker extra uitleg vinden over de werking van de app. Ook vind d
 ![alt text](https://github.com/sannedonker/mprog-final-project/blob/master/doc/scherm5.png)
 
 ### Optioneel
+
+#### Trofeeen
 Als extra functie zouden er troffeeen aan toegevoegd kunnen worden. Dit houdt in dat je als je een tafel helemaal gememoriseerd hebt, een x aantal keer specifieke tafels hebt geoefend, alle sommen een keer hebt gemaakt een troffee krijgt. Deze trofeeen zijn te zijn in een troffee gallerij die bereikbaar is vanaf het startscherm.
+
+#### Accounts
+Als meer mensen op een apparaat willen oefenen is het handig als ze een eigen account kunnen hebben.
+
+#### Zelf tafels toevoegen
+Als een gebruiker buiten de tafels 1 t/m 10 meer tafels wil oefenen, kan er een functie gemaakt worden waarbij de gebruiker extra tafels kan toevoegen. Zodat ook deze extra tafels geoefend kunnen worden.
 
 ## Moeilijkheden
 Een ingewikkeld punt aan de app is een manier te bedenken om sommen die moeilijk worden gevonden vaker te laten voorkomen. Ook is het moeilijk om bij langer gebruik de sommen te categoriseren. In welke categorie valt een som die eerst 5x fout wordt beantwoord en daarna 1x goed? In welke categorie valt een som die eerst 5x goed wordt beantwoord en daarna 1x fout?
