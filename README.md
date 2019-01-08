@@ -23,7 +23,7 @@ Voor de gebruiker is het ook mogelijk om specifieke tafels te oefenen. Hierbij k
 ![alt text](https://github.com/sannedonker/mprog-final-project/blob/master/doc/scherm2.png)
 
 ### Resultaten
-De resultaten die de gebruiker heeft, kunnen bekeken worden. Er is een algemeen overzicht waarin alle tafels te zien zijn en een specifiek overzicht van een tafel als op die tafel geklikt wordt.
+De resultaten die de gebruiker heeft, kunnen bekeken worden. Er is een algemeen overzicht waarin alle tafels te zien zijn en een specifiek overzicht van een tafel als op die tafel geklikt wordt. Op onderstaande afbeelding zijn de tafels in verschillende kleuren weergegeven. Het idee is dat in plaats van gekleurde knoppen, de knoppen piecharts zullen worden. Met in de piechart te zien hoeveel sommen in de categoriën (kleuren) zijn.
 
 ![alt text](https://github.com/sannedonker/mprog-final-project/blob/master/doc/scherm3.png)
 
