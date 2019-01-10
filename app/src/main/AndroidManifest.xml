@@ -17,7 +17,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".CalculateActivity" />
-        <activity android:name=".SpecificActivity"></activity>
+        <activity android:name=".SpecificActivity" />
+        <activity android:name=".ResetActivity" />
+        <activity android:name=".InfoActivity" />
+        <activity android:name=".ResultActivity" />
+        <activity android:name=".ResultListActivity" />
+        <activity android:name=".BeginActivity"></activity>
     </application>
 
 </manifest>

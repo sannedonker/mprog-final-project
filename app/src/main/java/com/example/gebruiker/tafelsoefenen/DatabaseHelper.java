@@ -2,8 +2,11 @@ package com.example.gebruiker.tafelsoefenen;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -25,7 +28,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table exercises ( _id INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + "multiplication String, answer INTEGER, multiplicationTable INTEGER,"
-                + "level INTEGER");
+                + "level INTEGER)");
 
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10 ; j++) {
@@ -42,6 +45,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 db.insert("exercises", null, values);
             }
         }
+
     }
 
     // update database
@@ -55,4 +59,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public DatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
+
+    // select needed exercises from database
+    public Cursor selectExercises(ArrayList exercisesList) {
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM exercises WHERE multiplicationTable IN " + exercisesList, null);
+        return cursor;
+    }
+
 }

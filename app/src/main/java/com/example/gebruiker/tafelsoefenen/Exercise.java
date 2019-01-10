@@ -1,6 +1,8 @@
 package com.example.gebruiker.tafelsoefenen;
 
-public class Exercise {
+import java.io.Serializable;
+
+public class Exercise implements Serializable {
 
     private String multiplication;
     private int answer, multiplicationTable, level;
@@ -9,6 +11,12 @@ public class Exercise {
         this.multiplication = multiplication;
         this.answer = answer;
         this.multiplicationTable = multiplicationTable;
+        this.level = level;
+    }
+
+    public Exercise(String multiplication, int answer, int level) {
+        this.multiplication = multiplication;
+        this.answer = answer;
         this.level = level;
     }
 
