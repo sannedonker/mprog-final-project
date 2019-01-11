@@ -69,6 +69,7 @@ public class CalculateActivity extends AppCompatActivity {
 
         // determine the correctnesslevel of the answer
         int answer = Integer.parseInt(((TextView) findViewById(R.id.answerField)).getText().toString());
+        Log.d("test", "submitClick: " + answer);
         int correctness = 0;
         if (answer == answers.get(counter)) {
             // iets met tijd gaan doen
@@ -85,9 +86,14 @@ public class CalculateActivity extends AppCompatActivity {
         // check if all exercises are made
         if (counter < amount) {
 
-            // show the question
+            // show the next question
+            counter++;
             TextView questionField = findViewById(R.id.questionField);
             questionField.setText(multiplications.get(counter));
+
+            // clear answerfield
+            TextView answerField = findViewById(R.id.answerField);
+            answerField.setText("");
 
         } else {
 
