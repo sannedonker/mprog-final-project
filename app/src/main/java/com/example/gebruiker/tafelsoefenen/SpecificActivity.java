@@ -28,10 +28,10 @@ public class SpecificActivity extends AppCompatActivity {
         for (int i = 0; i < 10; i++) {
             if (id == buttons[i]) {
                 if (practiceList.contains(i)) {
-                    practiceList.remove(i);
+                    practiceList.remove(i + 1);
                 }
                 else {
-                    practiceList.add(i);
+                    practiceList.add(i + 1);
                 }
             }
         }

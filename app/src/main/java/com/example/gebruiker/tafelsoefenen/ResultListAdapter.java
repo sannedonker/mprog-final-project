@@ -20,8 +20,6 @@ public class ResultListAdapter extends ArrayAdapter {
     public ResultListAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Exercise> objects) {
         super(context, resource, objects);
         multiplications = objects;
-        Log.d("test", "ResultListAdapter: " + multiplications);
-        // TODO dit is null boeeee :( :(
     }
 
     @NonNull

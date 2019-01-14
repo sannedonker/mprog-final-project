@@ -1,5 +1,7 @@
 package com.example.gebruiker.tafelsoefenen;
 
+import android.os.Parcelable;
+
 import java.io.Serializable;
 
 public class Exercise implements Serializable {
