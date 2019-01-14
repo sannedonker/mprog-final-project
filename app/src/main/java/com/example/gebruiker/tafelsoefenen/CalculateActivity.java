@@ -134,7 +134,9 @@ public class CalculateActivity extends AppCompatActivity {
                 int oldLevel = levelsRandom.get(counter);
                 int levelUpdate = correctness - 2;
                 int newLevel = oldLevel + levelUpdate;
-                if (newLevel < 1) {
+                if (oldLevel == 0) {
+                    newLevel = correctness;
+                } else if (newLevel < 1) {
                     newLevel = 1;
                 }
 

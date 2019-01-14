@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     public void calculateClick(View view) {
         ArrayList<Integer> exercisesList = new ArrayList<>();
         exercisesList.addAll(Arrays.asList(20, 1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
-        Log.d("test", "calculateClick: " + exercisesList);
 
         Intent intent = new Intent(MainActivity.this, CalculateActivity.class);
         intent.putExtra("exercisesList", exercisesList);

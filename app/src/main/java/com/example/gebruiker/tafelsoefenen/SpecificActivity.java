@@ -3,6 +3,7 @@ package com.example.gebruiker.tafelsoefenen;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -27,8 +28,8 @@ public class SpecificActivity extends AppCompatActivity {
         int id = view.getId();
         for (int i = 0; i < 10; i++) {
             if (id == buttons[i]) {
-                if (practiceList.contains(i)) {
-                    practiceList.remove(i + 1);
+                if (practiceList.contains(i + 1)) {
+                    practiceList.remove(Integer.valueOf(1 + i));
                 }
                 else {
                     practiceList.add(i + 1);
