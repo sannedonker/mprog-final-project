@@ -88,4 +88,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("UPDATE exercises SET level = " + newLevel + " WHERE _id = " + id);
     }
 
+    public void resetLevel() {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("UPDATE exercises SET level = 0");
+    }
+
 }

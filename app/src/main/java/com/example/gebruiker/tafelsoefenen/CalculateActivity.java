@@ -20,6 +20,7 @@ import java.util.stream.IntStream;
 public class CalculateActivity extends AppCompatActivity {
 
     //        TODO: progressbar toevoegen ??
+    // TODO: magic numbers weghalen
 
     DatabaseHelper db;
 
@@ -111,7 +112,6 @@ public class CalculateActivity extends AppCompatActivity {
             int correctness;
             if (answer == answersRandom.get(counter)) {
                 long answer_time = end_time - start_time;
-                Log.d("test", "submitClick: answer time" + answer_time);
                 if (answer_time < 3000) {
                     correctness = 1;
                 } else if (answer_time < 5000) {
@@ -161,8 +161,6 @@ public class CalculateActivity extends AppCompatActivity {
                 answerField.setText("");
 
             } else {
-
-                Log.d("test", "submitClick: " + resultExercises.size());
 
                 // go to result list activity and give the results of the exercises to that activity
                 Intent intent = new Intent(CalculateActivity.this, ResultListActivity.class);

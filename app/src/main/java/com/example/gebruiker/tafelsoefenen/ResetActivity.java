@@ -14,8 +14,14 @@ public class ResetActivity extends AppCompatActivity {
     }
 
     public void doReset(View view) {
-        // TODO: set database back to original database (all levels to 0)
-//        TODO: show confirmation message that the app has been resetted
+
+        // TODO: geeft geen error maar weet niet zeker of het werkt!
+        // reset database to original database
+        DatabaseHelper db = DatabaseHelper.getInstance(getApplicationContext());
+        db.resetLevel();
+
+        // TODO: show confirmation message that the app has been resetted
+
 
         Intent intent = new Intent(ResetActivity.this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
