@@ -83,4 +83,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public void updateLevel(int id, int newLevel) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("UPDATE exercises SET level = " + newLevel + " WHERE _id = " + id);
+    }
+
 }

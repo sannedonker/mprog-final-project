@@ -19,20 +19,21 @@ import java.util.stream.IntStream;
 
 public class CalculateActivity extends AppCompatActivity {
 
-    //        TODO: progressbar toevoegen
-    // TODO: toast of het goed is?
-    // TODO: zorgen dat ze input MOETEN geven
-    // TODO: nu alleen 2 tafels (andere manier van shuffelen gaan implementeren)
+    //        TODO: progressbar toevoegen ??
 
     DatabaseHelper db;
 
     ArrayList<String> multiplications = new ArrayList<>();
     ArrayList<Integer> answers = new ArrayList<>();
     ArrayList<Integer> levels = new ArrayList<>();
+    ArrayList<Integer> ids = new ArrayList<>();
 
     ArrayList<String> multiplicationsRandom = new ArrayList<>();
     ArrayList<Integer> answersRandom = new ArrayList<>();
     ArrayList<Integer> levelsRandom = new ArrayList<>();
+    ArrayList<Integer> idsRandom = new ArrayList<>();
+
+    ArrayList<Exercise> resultExercises = new ArrayList<>();
 
     long start_time;
 
@@ -49,9 +50,9 @@ public class CalculateActivity extends AppCompatActivity {
         Intent intent = getIntent();
         ArrayList<Integer> exercisesList = intent.getIntegerArrayListExtra("exercisesList");
 
+        // set necessary info in variables
         amount = exercisesList.get(0) - 1;
         levelBoolean = exercisesList.get(1);
-
         exercisesList.remove(0);
         exercisesList.remove(0);
 
@@ -63,11 +64,12 @@ public class CalculateActivity extends AppCompatActivity {
                 multiplications.add(cursor.getString(cursor.getColumnIndex("multiplication")));
                 answers.add(cursor.getInt(cursor.getColumnIndex("answer")));
                 levels.add(cursor.getInt(cursor.getColumnIndex("level")));
+                ids.add(cursor.getInt(cursor.getColumnIndex("_id")));
             }
 
             // create list with amount integers
             ArrayList<Integer> integers = new ArrayList<>();
-            for (int i = 0; i < amount + 1; i++) {
+            for (int i = 0; i < multiplications.size(); i++) {
                 integers.add(i);
             }
 
@@ -79,6 +81,7 @@ public class CalculateActivity extends AppCompatActivity {
                 multiplicationsRandom.add(multiplications.get(value));
                 answersRandom.add(answers.get(value));
                 levelsRandom.add(levels.get(value));
+                idsRandom.add(ids.get(value));
                 integers.remove(index);
             }
 
@@ -103,16 +106,15 @@ public class CalculateActivity extends AppCompatActivity {
         if (!answerCheck.equals("")) {
             long end_time = System.currentTimeMillis();
 
-            ArrayList<Exercise> resultExercises = new ArrayList<>();
-
             // determine the correctnesslevel of the answer
             int answer = Integer.parseInt(answerCheck);
             int correctness;
             if (answer == answersRandom.get(counter)) {
                 long answer_time = end_time - start_time;
-                if (answer_time < 3) {
+                Log.d("test", "submitClick: answer time" + answer_time);
+                if (answer_time < 3000) {
                     correctness = 1;
-                } else if (answer_time < 5) {
+                } else if (answer_time < 5000) {
                     correctness = 2;
                 } else {
                     correctness = 3;
@@ -127,7 +129,18 @@ public class CalculateActivity extends AppCompatActivity {
 
             // update level in database
             if (levelBoolean == 1) {
-                //TODO: level updaten in database
+
+                // determine new level
+                int oldLevel = levelsRandom.get(counter);
+                int levelUpdate = correctness - 2;
+                int newLevel = oldLevel + levelUpdate;
+                if (newLevel < 1) {
+                    newLevel = 1;
+                }
+
+                // TODO geen errors, maar moet nog checken of het echt iets doet!
+                // update level
+                db.updateLevel(idsRandom.get(counter), newLevel);
             }
 
             // check if all exercises are made
@@ -138,11 +151,16 @@ public class CalculateActivity extends AppCompatActivity {
                 TextView questionField = findViewById(R.id.questionField);
                 questionField.setText(multiplicationsRandom.get(counter));
 
+                // set new starttime
+                start_time = System.currentTimeMillis();
+
                 // clear answerfield
                 TextView answerField = findViewById(R.id.answerField);
                 answerField.setText("");
 
             } else {
+
+                Log.d("test", "submitClick: " + resultExercises.size());
 
                 // go to result list activity and give the results of the exercises to that activity
                 Intent intent = new Intent(CalculateActivity.this, ResultListActivity.class);
