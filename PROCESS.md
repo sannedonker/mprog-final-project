@@ -34,3 +34,8 @@ Deze doelen zijn allemaal gehaald. Wel heb ik bedacht dat ik eventueel de invoer
 (todo: plaatjes toevoegen (calculate activity & resultList activity).
 
 Verder ben ik begonnen aan het implementeren van de pie charts. Hier loop ik wel nog tegen een probleem aan van het gebruiken van de hellocharts library. Hopelijk kan ik de implementatie hiervan morgen met hulp oplossen.
+
+# Dag 7
+Het doel voor vandaag was het implementeren van pie charts in de resultActivity. Het creëren van een voorbeeld piechart is gelukt. Echter zijn er wel nog problemen bij de pieChartAdapter. Ontdekt is dat de genomen strategie (hele database doorgeven en 10 rijen per positie selecteren met een cursorResourceAdapter) niet werkt. Daarom is er nu een HashMap gemaakt. Helaas is er geen standaard HashMapAdapter dus deze zal morgen gemaakt worden.
+
+Verder is er vandaag met het team gewerkt aan de styleguide. Deze is te vinden in STYLE.md (TODO).
