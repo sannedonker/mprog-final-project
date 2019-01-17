@@ -39,3 +39,8 @@ Verder ben ik begonnen aan het implementeren van de pie charts. Hier loop ik wel
 Het doel voor vandaag was het implementeren van pie charts in de resultActivity. Het creëren van een voorbeeld piechart is gelukt. Echter zijn er wel nog problemen bij de pieChartAdapter. Ontdekt is dat de genomen strategie (hele database doorgeven en 10 rijen per positie selecteren met een cursorResourceAdapter) niet werkt. Daarom is er nu een HashMap gemaakt. Helaas is er geen standaard HashMapAdapter dus deze zal morgen gemaakt worden.
 
 Verder is er vandaag met het team gewerkt aan de styleguide. Deze is te vinden in STYLE.md (TODO).
+
+# Dag 9
+Het hoofddoel voor vandaag is het werkend maken van de PieChartAdapter. Er was een probleem met het zichtbaarmaken van de charts waar lang over gedaan is om op te lossen. Dit bleek echter makkelijker dan gedacht. Er is geprobeerd ipv een listview een scrollview te gebruiken maar dat bleek niet de oplossing te zijn. Het probleem was dat de charts op 'match-constraint' stonden, toen dit verandered werd naar 320dp werden de charts zichtbaar.
+
+Verder is er een OnItemClick geimplementeerd die je vanaf de piechart naar de resultList voor die tafel brent. Ook is er gekeken naar de updateLevel functie in de DatabaseHelper. Het lijkt namelijk dat deze niet werkt aangezien wanneer de levels uit de database gehaald worden voor de piecharts alle levels op 0, de default, staan. Echter wanneer er op een chart geklikt wordt, zie je dat de levels wel goed worden opgeslagen (de sommen hebben verschillende, correcte, kleuren). Met het resetten is dit dubbel gecheckt en daaruit volgde dat dit vermoeden klopt want alle sommen gingen terug naar grijs (de default waarde). Vermoedelijk zit dit probleem in selectLevel.
