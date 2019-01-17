@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -28,8 +29,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table exercises ( _id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + "multiplication String, answer INTEGER, multiplicationTable INTEGER,"
-                + "level INTEGER)");
+                   + "multiplication String, answer INTEGER, multiplicationTable INTEGER,"
+                   + "level INTEGER)");
 
         // add multiplications in database
         for (int i = 0; i < 10; i++) {
@@ -80,17 +81,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM exercises WHERE multiplicationTable IN "
                 + multiplications, null);
+
         return cursor;
     }
 
+    // update level on id
     public void updateLevel(int id, int newLevel) {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("UPDATE exercises SET level = " + newLevel + " WHERE _id = " + id);
     }
 
+    // reset all levels
     public void resetLevel() {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("UPDATE exercises SET level = 0");
+    }
+
+    // select all levels
+    public HashMap selectLevel() {
+        SQLiteDatabase db = getWritableDatabase();
+
+        HashMap<Integer, ArrayList<Integer>> levelMap = new HashMap<>();
+
+        for (int i = 0; i < 10; i++) {
+            Cursor cursor = db.rawQuery("SELECT level FROM exercises WHERE multiplicationTable = " + (i + 1), null);
+            ArrayList<Integer> levels = new ArrayList<>();
+            while (cursor.moveToNext()) {
+                levels.add(cursor.getColumnIndex("level"));
+            }
+            levelMap.put(i + 1, levels);
+        }
+        Log.d("test", "selectLevel: " + levelMap);
+
+        return levelMap;
     }
 
 }
