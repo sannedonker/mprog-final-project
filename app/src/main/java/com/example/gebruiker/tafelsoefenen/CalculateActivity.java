@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -19,7 +20,7 @@ import java.util.stream.IntStream;
 
 public class CalculateActivity extends AppCompatActivity {
 
-    //        TODO: progressbar toevoegen ??
+    // TODO: progressbar toevoegen
     // TODO: magic numbers weghalen
 
     DatabaseHelper db;
@@ -35,6 +36,8 @@ public class CalculateActivity extends AppCompatActivity {
     ArrayList<Integer> idsRandom = new ArrayList<>();
 
     ArrayList<Exercise> resultExercises = new ArrayList<>();
+
+    ProgressBar progressBar;
 
     long start_time;
 
@@ -97,6 +100,10 @@ public class CalculateActivity extends AppCompatActivity {
         // set the start time
         start_time = System.currentTimeMillis();
 
+        // set max progressbar
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setMax(amount);
+
     }
 
     public void submitClick(View view) {
@@ -152,8 +159,9 @@ public class CalculateActivity extends AppCompatActivity {
             // check if all exercises are made
             if (counter < amount) {
 
-                // show the next question
+                // show the next question and increment progressbar
                 counter++;
+                progressBar.setProgress(counter);
                 TextView questionField = findViewById(R.id.questionField);
                 questionField.setText(multiplicationsRandom.get(counter));
 
@@ -167,14 +175,13 @@ public class CalculateActivity extends AppCompatActivity {
             } else {
 
                 // go to result list activity and give the results of the exercises to that activity
-                Boolean resultActivity = false;
+                int resultActivity = 0;
                 Intent intent = new Intent(CalculateActivity.this, ResultListActivity.class);
                 intent.putExtra("resultExercises", resultExercises);
                 intent.putExtra("boolean", resultActivity);
                 startActivity(intent);
             }
         }
-
     }
 
     // makes sure that when pressed back the user goes to the MainActivity screen

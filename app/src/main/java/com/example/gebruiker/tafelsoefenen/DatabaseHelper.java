@@ -99,6 +99,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int return_value = db.update("exercises",values, "_id=?", test);
 
         Log.d("test", "updateLevel: gebeurt dit " + return_value);
+
     }
 
     // reset all levels
@@ -109,18 +110,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // select all levels
     public HashMap selectLevel() {
+
+        // TODO pak ik hier de goede (geupdate) db?????
         SQLiteDatabase db = getWritableDatabase();
 
         HashMap<Integer, ArrayList<Integer>> levelMap = new HashMap<>();
 
         for (int i = 0; i < 10; i++) {
+            // TODO ik denk dat het hier fout gaat (bij SELECT level ....)
             Cursor cursor = db.rawQuery("SELECT level FROM exercises WHERE multiplicationTable = "
                                         + (i + 1), null);
             ArrayList<Integer> levels = new ArrayList<>();
-            while (cursor.moveToNext()) {
-                levels.add(cursor.getColumnIndex("level"));
+            try {
+                while (cursor.moveToNext()) {
+                    levels.add(cursor.getColumnIndex("level"));
+                }
+                levelMap.put(i + 1, levels);
+            } finally {
+                cursor.close();
             }
-            levelMap.put(i + 1, levels);
         }
         Log.d("test", "selectLevel: " + levelMap);
 

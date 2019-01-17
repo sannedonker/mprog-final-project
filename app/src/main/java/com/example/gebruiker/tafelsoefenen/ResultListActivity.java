@@ -22,7 +22,6 @@ public class ResultListActivity extends AppCompatActivity {
         // get results from calculate activity
         intent = getIntent();
         ArrayList<Exercise> results = (ArrayList<Exercise>) intent.getSerializableExtra("resultExercises");
-//        Boolean resultActivity = intent.getBooleanExtra("boolean");
         resultActivity = intent.getIntExtra("boolean", 0);
 
         // instantiate the adapter and attach the adapter to the listview
@@ -31,11 +30,13 @@ public class ResultListActivity extends AppCompatActivity {
         lv.setAdapter(adapter);
     }
 
-    // TODO zorgen dat als je vanuit resultActivity komt dat die dan terug gaat naar daar
-    // makes sure that when pressed back the user goes to the MainActivity screen
+    // makes sure that when pressed back the user goes to the correct screen
     @Override
     public void onBackPressed()
     {
+        // TODO: zorgen dat je op de zelfde hoogte terug komt in ResultActivity
+
+        // if 1 return to ResultActivity, else return to MainActivity
         if (resultActivity == 1) {
             intent = new Intent(ResultListActivity.this, ResultActivity.class);
         } else {

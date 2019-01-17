@@ -75,11 +75,10 @@ public class ResultActivity extends AppCompatActivity {
             }
 
             // go to result list activity and give the results of the exercises to that activity
-            Boolean resultActivity = true;
-            int test = 1;
+            int resultActivity = 1;
             Intent intent = new Intent(ResultActivity.this, ResultListActivity.class);
             intent.putExtra("resultExercises", resultList);
-            intent.putExtra("boolean", test);
+            intent.putExtra("boolean", resultActivity);
             startActivity(intent);
 
         }
