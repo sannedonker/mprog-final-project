@@ -20,7 +20,6 @@ import java.util.stream.IntStream;
 
 public class CalculateActivity extends AppCompatActivity {
 
-    // TODO: progressbar toevoegen
     // TODO: magic numbers weghalen
 
     DatabaseHelper db;
@@ -77,6 +76,7 @@ public class CalculateActivity extends AppCompatActivity {
                 integers.add(i);
             }
 
+            // TODO: als start rekenen: dan pak vaker sommen met level 3 & 4
             // shuffle multiplications, answers and levels similarly
             Random rand = new Random();
             for (int i = 0; i < amount + 1; i++) {
@@ -151,7 +151,7 @@ public class CalculateActivity extends AppCompatActivity {
 
                 Log.d("test", "submitClick: kom ik hier " + newLevel);
 
-                // TODO geen errors, maar doet nog niets!
+                // TODO geen errors, maar doet nog niets! <-- doet wel iets!!!!
                 // update level
                 db.updateLevel(idsRandom.get(counter), newLevel);
             }

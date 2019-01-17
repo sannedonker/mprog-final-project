@@ -8,5 +8,7 @@
     <color name="orange">#FF8C00</color>
     <color name="red">#FF0000</color>
     <color name="grey">#A9A9A9</color>
+    <color name="darkgrey">#808080</color>
+    <color name="buttongrey">#D6D7D7</color>
 
 </resources>

@@ -1,6 +1,8 @@
 package com.example.gebruiker.tafelsoefenen;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,10 +12,11 @@ import java.util.ArrayList;
 
 public class SpecificActivity extends AppCompatActivity {
 
-    ArrayList<Integer> practiceList = new ArrayList<>();
+    // initialize variables and list with button ids
     int buttons[] = {R.id.times1, R.id.times2, R.id.times3, R.id.times4, R.id.times5, R.id.times6,
                      R.id.times7, R.id.times8, R.id.times9, R.id.times10};
 
+    ArrayList<Integer> practiceList = new ArrayList<>();
     ArrayList<Integer> exercisesList = new ArrayList<>();
 
     @Override
@@ -30,28 +33,34 @@ public class SpecificActivity extends AppCompatActivity {
             if (id == buttons[i]) {
                 if (practiceList.contains(i + 1)) {
                     practiceList.remove(Integer.valueOf(1 + i));
+                    findViewById(buttons[i]).setBackgroundTintList(ColorStateList.valueOf(
+                            getResources().getColor(R.color.buttongrey)));
                 }
                 else {
                     practiceList.add(i + 1);
+                    findViewById(buttons[i]).setBackgroundTintList(ColorStateList.valueOf(
+                            getResources().getColor(R.color.grey)));
                 }
             }
         }
-
-        // todo: change darkness of button when clicked (and unclicked)
-
     }
 
     public void practiceClick(View view) {
 
-        // create a list with (amount of exercises, boolean, multiplications that need to be practiced)
-        int amount = practiceList.size() * 10;
-        exercisesList.add(amount);
-        exercisesList.add(0);
-        exercisesList.addAll(practiceList);
+        if (practiceList.size() == 0) {
+            // TODO: toast dat ze minstens een tafel moeten aanklikken
+        } else {
 
-        // go to calculate activity
-        Intent intent = new Intent(SpecificActivity.this, CalculateActivity.class);
-        intent.putExtra("exercisesList", exercisesList);
-        startActivity(intent);
+            // create a list with (amount of exercises, boolean, multiplications that need to be practiced)
+            int amount = practiceList.size() * 10;
+            exercisesList.add(amount);
+            exercisesList.add(0);
+            exercisesList.addAll(practiceList);
+
+            // go to calculate activity
+            Intent intent = new Intent(SpecificActivity.this, CalculateActivity.class);
+            intent.putExtra("exercisesList", exercisesList);
+            startActivity(intent);
+        }
     }
 }
