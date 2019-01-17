@@ -44,8 +44,10 @@ public class ResultListAdapter extends ArrayAdapter {
             exerciseView.setTextColor(getContext().getResources().getColor(R.color.yellow));
         } else if (correctness == 3) {
             exerciseView.setTextColor(getContext().getResources().getColor(R.color.orange));
-        } else {
+        } else if (correctness == 4){
             exerciseView.setTextColor(getContext().getResources().getColor(R.color.red));
+        } else {
+            exerciseView.setTextColor(getContext().getResources().getColor(R.color.grey));
         }
 
         return convertView;

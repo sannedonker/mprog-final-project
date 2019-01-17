@@ -1,15 +1,20 @@
 package com.example.gebruiker.tafelsoefenen;
 
 import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import lecho.lib.hellocharts.model.Line;
 import lecho.lib.hellocharts.model.LineChartData;
@@ -24,8 +29,6 @@ public class ResultActivity extends AppCompatActivity {
     private DatabaseHelper db;
     private PieChartAdapter adapter;
 
-    ArrayList<Integer> testList = new ArrayList<>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,45 +41,47 @@ public class ResultActivity extends AppCompatActivity {
         // set the listview
         ListView lv = findViewById(R.id.result_listview);
         lv.setAdapter(adapter);
+        lv.setOnItemClickListener(new OnItemClickListener());
 
-//        int charts[] = {R.id.chart1, R.id.chart2, R.id.chart3, R.id.chart4, R.id.chart5,
-//                             R.id.chart6, R.id.chart7, R.id.chart8, R.id.chart9, R.id.chart10};
-//
-//        for (int i = 0; i < charts.length; i++) {
-//            PieChartView pieChartView = findViewById(charts[i]);
-//
-//            List<SliceValue> pieData = new ArrayList<>();
-//            Context context = getApplicationContext();
-//
-//            pieData.add(new SliceValue(2, context.getResources().getColor(R.color.grey)));
-//            pieData.add(new SliceValue(3, context.getResources().getColor(R.color.green)));
-//            pieData.add(new SliceValue(1, context.getResources().getColor(R.color.yellow)));
-//            pieData.add(new SliceValue(0, context.getResources().getColor(R.color.orange)));
-//            pieData.add(new SliceValue(4, context.getResources().getColor(R.color.red)));
-//
-//            PieChartData pieChartData = new PieChartData(pieData);
-//            pieChartView.setPieChartData(pieChartData);
-//         }
+    }
 
+    // when item clicked go to detailactivity screen
+    private class OnItemClickListener implements AdapterView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+            // TODO: geef de 10 sommen + levels naar volgende scherm
+            // TODO magic number weghalen
+            ArrayList<Exercise> resultList = new ArrayList<>();
 
-//        PieChartView pieChartView = findViewById(R.id.chart);
-//
-////        Log.d("test", "bindView: " + grey + " " + green + " " + yellow + " " + orange + " " + red);
-//
-//        List<SliceValue> pieData = new ArrayList<>();
-//        Context context = getApplicationContext();
-//
-//        pieData.add(new SliceValue(2, context.getResources().getColor(R.color.grey)));
-//        pieData.add(new SliceValue(3, context.getResources().getColor(R.color.green)));
-//        pieData.add(new SliceValue(1, context.getResources().getColor(R.color.yellow)));
-//        pieData.add(new SliceValue(0, context.getResources().getColor(R.color.orange)));
-//        pieData.add(new SliceValue(4, context.getResources().getColor(R.color.red)));
-//
-////        Log.d("test", "bindView: pieData " + pieData);
-//
-//        PieChartData pieChartData = new PieChartData(pieData);
-//        pieChartView.setPieChartData(pieChartData);
+            ArrayList<Integer> multiplication = new ArrayList<>();
+            multiplication.add(position + 1);
+            Cursor cursor = db.selectExercises(multiplication);
+            try {
+                ArrayList<String> multiplications = new ArrayList<>();
+                ArrayList<Integer> answers = new ArrayList<>();
+                ArrayList<Integer> levels = new ArrayList<>();
+                while (cursor.moveToNext()) {
+                    multiplications.add(cursor.getString(cursor.getColumnIndex("multiplication")));
+                    answers.add(cursor.getInt(cursor.getColumnIndex("answer")));
+                    levels.add(cursor.getInt(cursor.getColumnIndex("level")));
+                }
 
+                for (int i = 0; i < multiplications.size(); i++) {
+                    resultList.add(new Exercise(multiplications.get(i), answers.get(i), levels.get(i)));
+                }
+            } finally {
+                cursor.close();
+            }
+
+            // go to result list activity and give the results of the exercises to that activity
+            Boolean resultActivity = true;
+            int test = 1;
+            Intent intent = new Intent(ResultActivity.this, ResultListActivity.class);
+            intent.putExtra("resultExercises", resultList);
+            intent.putExtra("boolean", test);
+            startActivity(intent);
+
+        }
     }
 }

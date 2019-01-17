@@ -138,9 +138,13 @@ public class CalculateActivity extends AppCompatActivity {
                     newLevel = correctness;
                 } else if (newLevel < 1) {
                     newLevel = 1;
+                } else if (newLevel > 4) {
+                    newLevel = 4;
                 }
 
-                // TODO geen errors, maar moet nog checken of het echt iets doet!
+                Log.d("test", "submitClick: kom ik hier " + newLevel);
+
+                // TODO geen errors, maar doet nog niets!
                 // update level
                 db.updateLevel(idsRandom.get(counter), newLevel);
             }
@@ -163,8 +167,10 @@ public class CalculateActivity extends AppCompatActivity {
             } else {
 
                 // go to result list activity and give the results of the exercises to that activity
+                Boolean resultActivity = false;
                 Intent intent = new Intent(CalculateActivity.this, ResultListActivity.class);
                 intent.putExtra("resultExercises", resultExercises);
+                intent.putExtra("boolean", resultActivity);
                 startActivity(intent);
             }
         }

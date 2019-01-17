@@ -60,6 +60,7 @@ public class PieChartAdapter extends BaseAdapter {
 //        Log.d("test", "getView: wat is multiplication " + multiplication);
 
         ArrayList<Integer> actualLevels = multiplication.getValue();
+        String key = multiplication.getKey().toString();
 
 //        Log.d("test", "getView: wat is actualLevels " + actualLevels);
 
@@ -102,6 +103,7 @@ public class PieChartAdapter extends BaseAdapter {
         Log.d("test", "bindView: pieData " + pieData);
 
         PieChartData pieChartData = new PieChartData(pieData);
+        pieChartData.setHasCenterCircle(true).setCenterText1(key);
         pieChartView.setPieChartData(pieChartData);
 
         return result;

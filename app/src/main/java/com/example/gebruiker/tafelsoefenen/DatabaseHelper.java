@@ -88,7 +88,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // update level on id
     public void updateLevel(int id, int newLevel) {
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("UPDATE exercises SET level = " + newLevel + " WHERE _id = " + id);
+
+        ContentValues values = new ContentValues();
+        values.put("level", newLevel);
+
+        String[] test = new String[] {"" + id};
+
+//        int return_value = db.update("exercises", values, " _id=" + id, null);
+//        db.execSQL("UPDATE exercises SET level = " + newLevel + " WHERE _id = " + id);
+        int return_value = db.update("exercises",values, "_id=?", test);
+
+        Log.d("test", "updateLevel: gebeurt dit " + return_value);
     }
 
     // reset all levels
@@ -104,7 +114,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         HashMap<Integer, ArrayList<Integer>> levelMap = new HashMap<>();
 
         for (int i = 0; i < 10; i++) {
-            Cursor cursor = db.rawQuery("SELECT level FROM exercises WHERE multiplicationTable = " + (i + 1), null);
+            Cursor cursor = db.rawQuery("SELECT level FROM exercises WHERE multiplicationTable = "
+                                        + (i + 1), null);
             ArrayList<Integer> levels = new ArrayList<>();
             while (cursor.moveToNext()) {
                 levels.add(cursor.getColumnIndex("level"));
