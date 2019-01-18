@@ -11,7 +11,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -29,6 +31,8 @@ public class ResultActivity extends AppCompatActivity {
     private DatabaseHelper db;
     private PieChartAdapter adapter;
 
+//    int saved_position = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +41,8 @@ public class ResultActivity extends AppCompatActivity {
         // get updated database and adapter
         db = DatabaseHelper.getInstance(getApplicationContext());
         adapter = new PieChartAdapter(db.selectLevel());
+
+//        TODO if iets null dan listview setten en anders niet?????
 
         // set the listview
         ListView lv = findViewById(R.id.result_listview);
@@ -50,7 +56,6 @@ public class ResultActivity extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-            // TODO: geef de 10 sommen + levels naar volgende scherm
             // TODO magic number weghalen
             ArrayList<Exercise> resultList = new ArrayList<>();
 
@@ -74,13 +79,29 @@ public class ResultActivity extends AppCompatActivity {
                 cursor.close();
             }
 
+//            // save current position
+//            saved_position = position;
+
             // go to result list activity and give the results of the exercises to that activity
-            int resultActivity = 1;
-            Intent intent = new Intent(ResultActivity.this, ResultListActivity.class);
+//            int resultActivity = 1;
+            Intent intent = new Intent(ResultActivity.this, ResultListSpecificActivity.class);
             intent.putExtra("resultExercises", resultList);
-            intent.putExtra("boolean", resultActivity);
+//            intent.putExtra("boolean", resultActivity);
             startActivity(intent);
 
         }
     }
+
+//    // TODO geen idee waar ik hiermee iets zou kunnen doen..... morgen uitzoeken!!!
+//    // save current position
+//    @Override
+//    public void onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//
+//        ListView lv = findViewById(R.id.result_listview);
+//
+//        outState.
+//
+//        }
+
 }

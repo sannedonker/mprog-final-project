@@ -10,6 +10,8 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static android.database.DatabaseUtils.dumpCursorToString;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static DatabaseHelper instance;
@@ -89,16 +91,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void updateLevel(int id, int newLevel) {
         SQLiteDatabase db = getWritableDatabase();
 
+        // get new value of level
         ContentValues values = new ContentValues();
         values.put("level", newLevel);
 
-        String[] test = new String[] {"" + id};
+        // update database
+        String[] rowId = new String[] {"" + id};
+        db.update("exercises",values, "_id=?", rowId);
 
-//        int return_value = db.update("exercises", values, " _id=" + id, null);
-//        db.execSQL("UPDATE exercises SET level = " + newLevel + " WHERE _id = " + id);
-        int return_value = db.update("exercises",values, "_id=?", test);
-
-        Log.d("test", "updateLevel: gebeurt dit " + return_value);
 
     }
 
@@ -111,26 +111,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // select all levels
     public HashMap selectLevel() {
 
-        // TODO pak ik hier de goede (geupdate) db?????
+        // select database and initialize hashmap
         SQLiteDatabase db = getWritableDatabase();
-
         HashMap<Integer, ArrayList<Integer>> levelMap = new HashMap<>();
 
+        // select levels per multiplication
         for (int i = 0; i < 10; i++) {
-            // TODO ik denk dat het hier fout gaat (bij SELECT level ....)
             Cursor cursor = db.rawQuery("SELECT level FROM exercises WHERE multiplicationTable = "
                                         + (i + 1), null);
             ArrayList<Integer> levels = new ArrayList<>();
             try {
                 while (cursor.moveToNext()) {
-                    levels.add(cursor.getColumnIndex("level"));
+                    levels.add(cursor.getInt(0));
                 }
                 levelMap.put(i + 1, levels);
             } finally {
                 cursor.close();
             }
         }
-        Log.d("test", "selectLevel: " + levelMap);
 
         return levelMap;
     }

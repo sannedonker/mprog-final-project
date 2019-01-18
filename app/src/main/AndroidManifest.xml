@@ -22,7 +22,8 @@
         <activity android:name=".InfoActivity" />
         <activity android:name=".ResultActivity" />
         <activity android:name=".ResultListActivity" />
-        <activity android:name=".BeginActivity"></activity>
+        <activity android:name=".BeginActivity" />
+        <activity android:name=".ResultListSpecificActivity"></activity>
     </application>
 
 </manifest>

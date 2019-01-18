@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -25,7 +26,7 @@ public class SpecificActivity extends AppCompatActivity {
         setContentView(R.layout.activity_specific);
     }
 
-    // add or remove multiplication to practice list
+    // add or remove multiplication to practice list and change color of clikced button
     public void timesSelected(View view) {
 
         int id = view.getId();
@@ -48,7 +49,7 @@ public class SpecificActivity extends AppCompatActivity {
     public void practiceClick(View view) {
 
         if (practiceList.size() == 0) {
-            // TODO: toast dat ze minstens een tafel moeten aanklikken
+            Toast.makeText(this,"Select at least one multiplication",Toast.LENGTH_LONG).show();
         } else {
 
             // create a list with (amount of exercises, boolean, multiplications that need to be practiced)

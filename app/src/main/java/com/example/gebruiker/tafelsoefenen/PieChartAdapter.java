@@ -51,7 +51,8 @@ public class PieChartAdapter extends BaseAdapter {
         final View result;
 
         if (convertView == null) {
-            result = LayoutInflater.from(parent.getContext()).inflate(R.layout.pie_chart, parent, false);
+            result = LayoutInflater.from(parent.getContext()).inflate(R.layout.pie_chart, parent,
+                    false);
         } else {
             result = convertView;
         }
@@ -87,9 +88,9 @@ public class PieChartAdapter extends BaseAdapter {
 
         PieChartView pieChartView = result.findViewById(R.id.chart);
 
+        // make sure that pie charts can't be rotated
         pieChartView.setInteractive(false);
 
-//        Log.d("test", "bindView: " + grey + " " + green + " " + yellow + " " + orange + " " + red);
 
         List<SliceValue> pieData = new ArrayList<>();
         context = parent.getContext();
