@@ -31,8 +31,6 @@ public class ResultActivity extends AppCompatActivity {
     private DatabaseHelper db;
     private PieChartAdapter adapter;
 
-//    int saved_position = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,12 +40,10 @@ public class ResultActivity extends AppCompatActivity {
         db = DatabaseHelper.getInstance(getApplicationContext());
         adapter = new PieChartAdapter(db.selectLevel());
 
-//        TODO if iets null dan listview setten en anders niet?????
-
-        // set the listview
-        ListView lv = findViewById(R.id.result_listview);
-        lv.setAdapter(adapter);
-        lv.setOnItemClickListener(new OnItemClickListener());
+        // set the gridview
+        GridView gv = findViewById(R.id.result_gridview);
+        gv.setAdapter(adapter);
+        gv.setOnItemClickListener(new OnItemClickListener());
 
     }
 
@@ -79,29 +75,11 @@ public class ResultActivity extends AppCompatActivity {
                 cursor.close();
             }
 
-//            // save current position
-//            saved_position = position;
-
-            // go to result list activity and give the results of the exercises to that activity
-//            int resultActivity = 1;
             Intent intent = new Intent(ResultActivity.this, ResultListSpecificActivity.class);
             intent.putExtra("resultExercises", resultList);
-//            intent.putExtra("boolean", resultActivity);
             startActivity(intent);
 
         }
     }
-
-//    // TODO geen idee waar ik hiermee iets zou kunnen doen..... morgen uitzoeken!!!
-//    // save current position
-//    @Override
-//    public void onSaveInstanceState(Bundle outState) {
-//        super.onSaveInstanceState(outState);
-//
-//        ListView lv = findViewById(R.id.result_listview);
-//
-//        outState.
-//
-//        }
 
 }

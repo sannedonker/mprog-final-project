@@ -81,11 +81,7 @@ public class CalculateActivity extends AppCompatActivity {
 
             }
 
-            Log.d("test", "onCreate: exercises size " + exercises.size());
-
             Collections.shuffle(exercises);
-
-            // TODO: iets doen tegen het hebben van dubbele sommen!
 
             for (int i = 0, j = 0; i < amount + 1; i++, j++) {
                 Exercise exercise = exercises.get(j);
