@@ -30,11 +30,6 @@ public class CalculateActivity extends AppCompatActivity {
     ArrayList<Integer> levels = new ArrayList<>();
     ArrayList<Integer> ids = new ArrayList<>();
 
-    ArrayList<String> multiplicationsRandom = new ArrayList<>();
-    ArrayList<Integer> answersRandom = new ArrayList<>();
-    ArrayList<Integer> levelsRandom = new ArrayList<>();
-    ArrayList<Integer> idsRandom = new ArrayList<>();
-
     ArrayList<Exercise> resultExercises = new ArrayList<>();
     ArrayList<Integer> givenAnswers = new ArrayList<>();
 
@@ -61,6 +56,9 @@ public class CalculateActivity extends AppCompatActivity {
         exercisesList.remove(0);
         exercisesList.remove(0);
 
+        // TODO: practiceBoolean toevoegen
+        int practiceBoolean = 1;
+
         // get database and select necessary columns with it's data
         db = DatabaseHelper.getInstance(getApplicationContext());
         Cursor cursor = db.selectExercises(exercisesList);
@@ -72,17 +70,37 @@ public class CalculateActivity extends AppCompatActivity {
                 int level = cursor.getInt(4);
                 int id = cursor.getInt(0);
 
-                exercises.add(new Exercise(multiplication, answer, level, id));
+                // if user comes from the practice activity, difficult exercises have a higher change of being chosen
+                if (practiceBoolean == 1) {
+                    for (int i = 0; i < level + 1; i++) {
+                        exercises.add(new Exercise(multiplication, answer, level, id));
+                    }
+                } else {
+                    exercises.add(new Exercise(multiplication, answer, level, id));
+                }
+
             }
+
+            Log.d("test", "onCreate: exercises size " + exercises.size());
 
             Collections.shuffle(exercises);
 
-            for (int i = 0; i < exercises.size(); i++) {
-                Exercise exercise = exercises.get(i);
-                multiplications.add(exercise.getMultiplication());
-                answers.add(exercise.getAnswer());
-                levels.add(exercise.getLevel());
-                ids.add(exercise.getId());
+            // TODO: iets doen tegen het hebben van dubbele sommen!
+
+            for (int i = 0, j = 0; i < amount + 1; i++, j++) {
+                Exercise exercise = exercises.get(j);
+
+                // make sure that there are no duplicates in the practice list
+                if (multiplications.contains(exercise.getMultiplication())) {
+                    i--;
+                } else {
+                    multiplications.add(exercise.getMultiplication());
+                    answers.add(exercise.getAnswer());
+                    levels.add(exercise.getLevel());
+                    ids.add(exercise.getId());
+                }
+
+                Log.d("test", "onCreate: exercise level " + exercise.getMultiplication() + " " + exercise.getLevel());
             }
 
         } finally {
