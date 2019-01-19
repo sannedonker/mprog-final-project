@@ -40,6 +40,8 @@ public class PieChartAdapter extends BaseAdapter {
         return (Map.Entry) levels.get(position);
     }
 
+
+    // TODO: vraag stellen waarvoor dit gebruikt zou kunnen worden
     @Override
     public long getItemId(int position) {
         // TODO implement you own logic with ID
@@ -72,7 +74,6 @@ public class PieChartAdapter extends BaseAdapter {
         orange = 0;
         red = 0;
         for (int i = 0; i < actualLevels.size(); i++) {
-//            Log.d("test", "getView: hoe vaak kom ik hier " + counter);
             int level = actualLevels.get(i);
             if (level == 0) {
                 grey++;
@@ -86,26 +87,24 @@ public class PieChartAdapter extends BaseAdapter {
                 red++; }
         }
 
-        PieChartView pieChartView = result.findViewById(R.id.chart);
-
-        // make sure that pie charts can't be rotated
-        pieChartView.setInteractive(false);
-
-
+        // set color values to pieData
         List<SliceValue> pieData = new ArrayList<>();
         context = parent.getContext();
-
         pieData.add(new SliceValue(green, context.getResources().getColor(R.color.green)));
         pieData.add(new SliceValue(yellow, context.getResources().getColor(R.color.yellow)));
         pieData.add(new SliceValue(orange, context.getResources().getColor(R.color.orange)));
         pieData.add(new SliceValue(red, context.getResources().getColor(R.color.red)));
         pieData.add(new SliceValue(grey, context.getResources().getColor(R.color.grey)));
 
-        Log.d("test", "bindView: pieData " + pieData);
-
+        // set pieData to the pieChart
         PieChartData pieChartData = new PieChartData(pieData);
         pieChartData.setHasCenterCircle(true).setCenterText1(key);
+
+        PieChartView pieChartView = result.findViewById(R.id.chart);
         pieChartView.setPieChartData(pieChartData);
+
+        // make sure that pie charts can't be rotated
+        pieChartView.setInteractive(false);
 
         return result;
     }

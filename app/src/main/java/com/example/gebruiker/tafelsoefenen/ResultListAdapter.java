@@ -15,11 +15,15 @@ import java.util.ArrayList;
 public class ResultListAdapter extends ArrayAdapter {
 
     private ArrayList<Exercise> multiplications;
+    private ArrayList<Integer> givenAnswers;
 
     // set the list in the adapter
-    public ResultListAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Exercise> objects) {
+    public ResultListAdapter(@NonNull Context context, int resource,
+                             @NonNull ArrayList<Exercise> objects,
+                             @NonNull ArrayList<Integer> answers) {
         super(context, resource, objects);
         multiplications = objects;
+        givenAnswers = answers;
     }
 
     @NonNull
@@ -28,30 +32,40 @@ public class ResultListAdapter extends ArrayAdapter {
 
         // loads new items
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.result_item, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.result_item_calculating,
+                    parent, false);
         }
 
         // get and set question and answer of the items that are shown
         Exercise current_exercise = multiplications.get(position);
-        TextView exerciseView = ((TextView) convertView.findViewById(R.id.exercise));
-        exerciseView.setText(current_exercise.getMultiplication() + " = " + current_exercise.getAnswer());
+        TextView exerciseView = ((TextView) convertView.findViewById(R.id.exercise_tv));
+        exerciseView.setText(current_exercise.getMultiplication());
+        TextView answerView = ((TextView) convertView.findViewById(R.id.answer_tv));
+        Log.d("test", "getView: answerView" + answerView);
+        Log.d("test", "getView: answer " + current_exercise.getAnswer());
+        String test = String.valueOf(current_exercise.getAnswer());
+        answerView.setText(test);
+
+        // TODO answer opslaan als string (zoals oorspronkelijk) wat ik nu doe is onnodig
+        // set given answer
+        TextView answerGivenView = ((TextView) convertView.findViewById(R.id.answer_given_tv));
+        answerGivenView.setText(givenAnswers.get(position).toString());
 
         // get correct color with correctness level
         int correctness = current_exercise.getLevel();
         if (correctness == 1) {
-            exerciseView.setTextColor(getContext().getResources().getColor(R.color.green));
+            answerGivenView.setTextColor(getContext().getResources().getColor(R.color.green));
         } else if (correctness == 2) {
-            exerciseView.setTextColor(getContext().getResources().getColor(R.color.yellow));
+            answerGivenView.setTextColor(getContext().getResources().getColor(R.color.yellow));
         } else if (correctness == 3) {
-            exerciseView.setTextColor(getContext().getResources().getColor(R.color.orange));
+            answerGivenView.setTextColor(getContext().getResources().getColor(R.color.orange));
         } else if (correctness == 4){
-            exerciseView.setTextColor(getContext().getResources().getColor(R.color.red));
+//            exerciseView.setTextColor(getContext().getResources().getColor(R.color.red));
+            answerGivenView.setTextColor(getContext().getResources().getColor(R.color.red));
         } else {
-            exerciseView.setTextColor(getContext().getResources().getColor(R.color.grey));
+            answerGivenView.setTextColor(getContext().getResources().getColor(R.color.grey));
         }
 
         return convertView;
     }
-
-
 }

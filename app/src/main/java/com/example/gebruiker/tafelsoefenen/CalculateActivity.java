@@ -13,6 +13,7 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -35,6 +36,7 @@ public class CalculateActivity extends AppCompatActivity {
     ArrayList<Integer> idsRandom = new ArrayList<>();
 
     ArrayList<Exercise> resultExercises = new ArrayList<>();
+    ArrayList<Integer> givenAnswers = new ArrayList<>();
 
     ProgressBar progressBar;
 
@@ -62,31 +64,25 @@ public class CalculateActivity extends AppCompatActivity {
         // get database and select necessary columns with it's data
         db = DatabaseHelper.getInstance(getApplicationContext());
         Cursor cursor = db.selectExercises(exercisesList);
+        ArrayList<Exercise> exercises = new ArrayList<>();
         try {
             while (cursor.moveToNext()) {
-                multiplications.add(cursor.getString(cursor.getColumnIndex("multiplication")));
-                answers.add(cursor.getInt(cursor.getColumnIndex("answer")));
-                levels.add(cursor.getInt(cursor.getColumnIndex("level")));
-                ids.add(cursor.getInt(cursor.getColumnIndex("_id")));
+                String multiplication = cursor.getString(cursor.getColumnIndex("multiplication"));
+                int answer = cursor.getInt(2);
+                int level = cursor.getInt(4);
+                int id = cursor.getInt(0);
+
+                exercises.add(new Exercise(multiplication, answer, level, id));
             }
 
-            // create list with amount integers
-            ArrayList<Integer> integers = new ArrayList<>();
-            for (int i = 0; i < multiplications.size(); i++) {
-                integers.add(i);
-            }
+            Collections.shuffle(exercises);
 
-            // TODO: als start rekenen: dan pak vaker sommen met level 3 & 4
-            // shuffle multiplications, answers and levels similarly
-            Random rand = new Random();
-            for (int i = 0; i < amount + 1; i++) {
-                int index = rand.nextInt(integers.size());
-                int value = integers.get(index);
-                multiplicationsRandom.add(multiplications.get(value));
-                answersRandom.add(answers.get(value));
-                levelsRandom.add(levels.get(value));
-                idsRandom.add(ids.get(value));
-                integers.remove(index);
+            for (int i = 0; i < exercises.size(); i++) {
+                Exercise exercise = exercises.get(i);
+                multiplications.add(exercise.getMultiplication());
+                answers.add(exercise.getAnswer());
+                levels.add(exercise.getLevel());
+                ids.add(exercise.getId());
             }
 
         } finally {
@@ -95,7 +91,7 @@ public class CalculateActivity extends AppCompatActivity {
 
         // show the first question
         TextView questionField = findViewById(R.id.questionField);
-        questionField.setText(multiplicationsRandom.get(counter));
+        questionField.setText(multiplications.get(counter));
 
         // set the start time
         start_time = System.currentTimeMillis();
@@ -114,10 +110,10 @@ public class CalculateActivity extends AppCompatActivity {
         if (!answerCheck.equals("")) {
             long end_time = System.currentTimeMillis();
 
-            // determine the correctnesslevel of the answer
+            // determine the correctness of the answer
             int answer = Integer.parseInt(answerCheck);
             int correctness;
-            if (answer == answersRandom.get(counter)) {
+            if (answer == answers.get(counter)) {
                 long answer_time = end_time - start_time;
                 if (answer_time < 3000) {
                     correctness = 1;
@@ -131,14 +127,17 @@ public class CalculateActivity extends AppCompatActivity {
             }
 
             // add exercise to result list
-            resultExercises.add(new Exercise(multiplicationsRandom.get(counter),
-                                answersRandom.get(counter), correctness));
+            resultExercises.add(new Exercise(multiplications.get(counter),
+                                answers.get(counter), correctness));
+
+            // add answer to the given answers list
+            givenAnswers.add(answer);
 
             // update level in database
             if (levelBoolean == 1) {
 
                 // determine new level
-                int oldLevel = levelsRandom.get(counter);
+                int oldLevel = levels.get(counter);
                 int levelUpdate = correctness - 2;
                 int newLevel = oldLevel + levelUpdate;
                 if (oldLevel == 0) {
@@ -149,11 +148,8 @@ public class CalculateActivity extends AppCompatActivity {
                     newLevel = 4;
                 }
 
-                Log.d("test", "submitClick: kom ik hier " + newLevel);
-
-                // TODO geen errors, maar doet nog niets! <-- doet wel iets!!!!
                 // update level
-                db.updateLevel(idsRandom.get(counter), newLevel);
+                db.updateLevel(ids.get(counter), newLevel);
             }
 
             // check if all exercises are made
@@ -163,7 +159,7 @@ public class CalculateActivity extends AppCompatActivity {
                 counter++;
                 progressBar.setProgress(counter);
                 TextView questionField = findViewById(R.id.questionField);
-                questionField.setText(multiplicationsRandom.get(counter));
+                questionField.setText(multiplications.get(counter));
 
                 // set new starttime
                 start_time = System.currentTimeMillis();
@@ -175,10 +171,9 @@ public class CalculateActivity extends AppCompatActivity {
             } else {
 
                 // go to result list activity and give the results of the exercises to that activity
-                int resultActivity = 0;
                 Intent intent = new Intent(CalculateActivity.this, ResultListActivity.class);
                 intent.putExtra("resultExercises", resultExercises);
-                intent.putExtra("boolean", resultActivity);
+                intent.putExtra("givenAnswers", givenAnswers);
                 startActivity(intent);
             }
         }

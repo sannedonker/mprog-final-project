@@ -20,11 +20,12 @@ public class ResultListActivity extends AppCompatActivity {
         // get results from calculate activity
         Intent intent = getIntent();
         ArrayList<Exercise> results = (ArrayList<Exercise>) intent.getSerializableExtra("resultExercises");
+        ArrayList<Integer> givenAnswers = intent.getIntegerArrayListExtra("givenAnswers");
 
-        // TODO foute antwoorden ophalen en een tweede kolom maken!
+        // TODO nieuwe adapter maken! :(
 
         // instantiate the adapter and attach the adapter to the listview
-        ResultListAdapter adapter = new ResultListAdapter(this, R.layout.result_item, results);
+        ResultListAdapter adapter = new ResultListAdapter(this, R.layout.result_item, results, givenAnswers);
         ListView lv = findViewById(R.id.listView);
         lv.setAdapter(adapter);
     }
