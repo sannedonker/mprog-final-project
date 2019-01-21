@@ -16,6 +16,7 @@ public class TrophyActivity extends AppCompatActivity {
 
         // get updated database and adapter
         db = TrophyDatabaseHelper.getInstance(getApplicationContext());
+        db.updateTrophies(DatabaseHelper.getInstance(getApplicationContext()));
         adapter = new TrophyAdapter(TrophyActivity.this, db.selectAll());
 
         // set the listview

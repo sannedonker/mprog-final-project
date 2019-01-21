@@ -1,5 +1,7 @@
 package com.example.gebruiker.tafelsoefenen;
 
+// TODO deze class gebruik ik nog neit!! Als dat zo blijft --> verwijderen!
+
 public class Trophy {
 
     private String name, description;

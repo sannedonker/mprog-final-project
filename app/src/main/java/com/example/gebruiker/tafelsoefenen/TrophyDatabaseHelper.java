@@ -5,8 +5,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class TrophyDatabaseHelper extends SQLiteOpenHelper {
 
@@ -76,5 +78,49 @@ public class TrophyDatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM trophies", null);
         return cursor;
+    }
+
+    // update trophies
+    public void updateTrophies (DatabaseHelper dbExercises) {
+
+        SQLiteDatabase dbTrophies = getWritableDatabase();
+        int counter = 0;
+
+        HashMap<Integer, ArrayList<Integer>> levelMap = dbExercises.selectLevel();
+        // TODO: magic number 10 weghalen
+        for (int i = 0; i < 10; i++) {
+            Boolean earned = true;
+            ArrayList<Integer> levels = levelMap.get(i + 1);
+            for (int j = 0; j < 10; j++) {
+                if (levels.get(j) != 1) {
+                    earned = false;
+                    break;
+                }
+            }
+
+            if (earned){
+
+                // get new value of level
+                ContentValues values = new ContentValues();
+                values.put("earned", 1);
+
+                // update database
+                String[] dbId = new String[] {"" + (i + 1)};
+                dbTrophies.update("trophies",values, "_id=?", dbId);
+
+                // increment trophy counter
+                counter++;
+            }
+        }
+
+        // TODO: waarom is het 11????
+        // if all multiplication trophies are earned
+        if (counter == 10){
+            ContentValues values = new ContentValues();
+            values.put("earned", 1);
+
+            String[] dbId = new String[] {"" + 11};
+            dbTrophies.update("trophies", values,"_id=?", dbId);
+        }
     }
 }
