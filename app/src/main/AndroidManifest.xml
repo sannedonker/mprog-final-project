@@ -16,7 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CalculateActivity" />
+        <activity android:name=".CalculateActivity"
+            android:windowSoftInputMode="stateVisible"/>
         <activity android:name=".SpecificActivity" />
         <activity android:name=".ResetActivity" />
         <activity android:name=".InfoActivity" />

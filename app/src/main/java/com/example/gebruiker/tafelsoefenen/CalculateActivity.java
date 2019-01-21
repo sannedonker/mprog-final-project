@@ -5,8 +5,11 @@ import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -70,6 +73,7 @@ public class CalculateActivity extends AppCompatActivity {
                 int level = cursor.getInt(4);
                 int id = cursor.getInt(0);
 
+                // TODO als level == 0 zorgen dat die er even vaak in komt als level == 1
                 // if user comes from the practice activity, difficult exercises have a higher change of being chosen
                 if (practiceBoolean == 1) {
                     for (int i = 0; i < level + 1; i++) {
@@ -114,84 +118,93 @@ public class CalculateActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         progressBar.setMax(amount);
 
-    }
+        EditText editText = (EditText) findViewById(R.id.answerField);
+        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                boolean handled = false;
+                if (actionId == EditorInfo.IME_ACTION_SEND) {
+                    String answerCheck = ((TextView) findViewById(R.id.answerField)).getText().toString();
 
-    public void submitClick(View view) {
+                    // if answer is given proceed otherwise clicking the button won't work
+                    if (!answerCheck.equals("")) {
+                        long end_time = System.currentTimeMillis();
 
-        String answerCheck = ((TextView) findViewById(R.id.answerField)).getText().toString();
+                        // determine the correctness of the answer
+                        int answer = Integer.parseInt(answerCheck);
+                        int correctness;
+                        if (answer == answers.get(counter)) {
+                            long answer_time = end_time - start_time;
+                            if (answer_time < 3000) {
+                                correctness = 1;
+                            } else if (answer_time < 5000) {
+                                correctness = 2;
+                            } else {
+                                correctness = 3;
+                            }
+                        } else {
+                            correctness = 4;
+                        }
 
-        // if answer is given proceed otherwise clicking the button won't work
-        if (!answerCheck.equals("")) {
-            long end_time = System.currentTimeMillis();
-
-            // determine the correctness of the answer
-            int answer = Integer.parseInt(answerCheck);
-            int correctness;
-            if (answer == answers.get(counter)) {
-                long answer_time = end_time - start_time;
-                if (answer_time < 3000) {
-                    correctness = 1;
-                } else if (answer_time < 5000) {
-                    correctness = 2;
-                } else {
-                    correctness = 3;
-                }
-            } else {
-                correctness = 4;
-            }
-
-            // add exercise to result list
-            resultExercises.add(new Exercise(multiplications.get(counter),
+                        // add exercise to result list
+                        resultExercises.add(new Exercise(multiplications.get(counter),
                                 answers.get(counter), correctness));
 
-            // add answer to the given answers list
-            givenAnswers.add(answer);
+                        // add answer to the given answers list
+                        givenAnswers.add(answer);
 
-            // update level in database
-            if (levelBoolean == 1) {
+                        // update level in database
+                        if (levelBoolean == 1) {
 
-                // determine new level
-                int oldLevel = levels.get(counter);
-                int levelUpdate = correctness - 2;
-                int newLevel = oldLevel + levelUpdate;
-                if (oldLevel == 0) {
-                    newLevel = correctness;
-                } else if (newLevel < 1) {
-                    newLevel = 1;
-                } else if (newLevel > 4) {
-                    newLevel = 4;
+                            // determine new level
+                            int oldLevel = levels.get(counter);
+                            int levelUpdate = correctness - 2;
+                            int newLevel = oldLevel + levelUpdate;
+                            if (oldLevel == 0) {
+                                newLevel = correctness;
+                            } else if (newLevel < 1) {
+                                newLevel = 1;
+                            } else if (newLevel > 4) {
+                                newLevel = 4;
+                            }
+
+                            // update level
+                            db.updateLevel(ids.get(counter), newLevel);
+                        }
+
+                        // check if all exercises are made
+                        if (counter < amount) {
+
+                            // show the next question and increment progressbar
+                            counter++;
+                            progressBar.setProgress(counter);
+                            TextView questionField = findViewById(R.id.questionField);
+                            questionField.setText(multiplications.get(counter));
+
+                            // set new starttime
+                            start_time = System.currentTimeMillis();
+
+                            // clear answerfield
+                            TextView answerField = findViewById(R.id.answerField);
+                            answerField.setText("");
+
+                        } else {
+
+                            // go to result list activity and give the results of the exercises to that activity
+                            Intent intent = new Intent(CalculateActivity.this, ResultListActivity.class);
+                            intent.putExtra("resultExercises", resultExercises);
+                            intent.putExtra("givenAnswers", givenAnswers);
+                            startActivity(intent);
+                        }
+                    }
+
+                    handled = true;
                 }
-
-                // update level
-                db.updateLevel(ids.get(counter), newLevel);
+                return handled;
             }
-
-            // check if all exercises are made
-            if (counter < amount) {
-
-                // show the next question and increment progressbar
-                counter++;
-                progressBar.setProgress(counter);
-                TextView questionField = findViewById(R.id.questionField);
-                questionField.setText(multiplications.get(counter));
-
-                // set new starttime
-                start_time = System.currentTimeMillis();
-
-                // clear answerfield
-                TextView answerField = findViewById(R.id.answerField);
-                answerField.setText("");
-
-            } else {
-
-                // go to result list activity and give the results of the exercises to that activity
-                Intent intent = new Intent(CalculateActivity.this, ResultListActivity.class);
-                intent.putExtra("resultExercises", resultExercises);
-                intent.putExtra("givenAnswers", givenAnswers);
-                startActivity(intent);
-            }
-        }
+        });
     }
+
 
     // makes sure that when pressed back the user goes to the MainActivity screen
     @Override
