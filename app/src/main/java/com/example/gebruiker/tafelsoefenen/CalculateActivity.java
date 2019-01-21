@@ -25,6 +25,7 @@ import java.util.stream.IntStream;
 public class CalculateActivity extends AppCompatActivity {
 
     // TODO: magic numbers weghalen
+    // TODO: meer functies maken (nu alles in onCreate)
 
     DatabaseHelper db;
 
@@ -56,11 +57,13 @@ public class CalculateActivity extends AppCompatActivity {
         // set necessary info in variables
         amount = exercisesList.get(0) - 1;
         levelBoolean = exercisesList.get(1);
+        int practiceBoolean = exercisesList.get(2);
+
+        // TODO: dit netter in een loopje
+        exercisesList.remove(0);
         exercisesList.remove(0);
         exercisesList.remove(0);
 
-        // TODO: practiceBoolean toevoegen
-        int practiceBoolean = 1;
 
         // get database and select necessary columns with it's data
         db = DatabaseHelper.getInstance(getApplicationContext());
@@ -73,12 +76,22 @@ public class CalculateActivity extends AppCompatActivity {
                 int level = cursor.getInt(4);
                 int id = cursor.getInt(0);
 
-                // TODO als level == 0 zorgen dat die er even vaak in komt als level == 1
-                // if user comes from the practice activity, difficult exercises have a higher change of being chosen
+                // if user comes from the practice activity, take level in consideration
                 if (practiceBoolean == 1) {
-                    for (int i = 0; i < level + 1; i++) {
+
+                    // set chance per level
+                    int levelChance;
+                    if (level == 0) {
+                        levelChance = 1;
+                    } else {
+                        levelChance = level;
+                    }
+
+                    // set exercise in list, amount according on levelChance
+                    for (int i = 0; i < levelChance; i++) {
                         exercises.add(new Exercise(multiplication, answer, level, id));
                     }
+
                 } else {
                     exercises.add(new Exercise(multiplication, answer, level, id));
                 }

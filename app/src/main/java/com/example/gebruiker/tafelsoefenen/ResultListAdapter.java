@@ -17,7 +17,7 @@ public class ResultListAdapter extends ArrayAdapter {
     private ArrayList<Exercise> multiplications;
     private ArrayList<Integer> givenAnswers;
 
-    // set the list in the adapter
+    // set the lists in the adapter
     public ResultListAdapter(@NonNull Context context, int resource,
                              @NonNull ArrayList<Exercise> objects,
                              @NonNull ArrayList<Integer> answers) {
@@ -60,7 +60,6 @@ public class ResultListAdapter extends ArrayAdapter {
         } else if (correctness == 3) {
             answerGivenView.setTextColor(getContext().getResources().getColor(R.color.orange));
         } else if (correctness == 4){
-//            exerciseView.setTextColor(getContext().getResources().getColor(R.color.red));
             answerGivenView.setTextColor(getContext().getResources().getColor(R.color.red));
         } else {
             answerGivenView.setTextColor(getContext().getResources().getColor(R.color.grey));

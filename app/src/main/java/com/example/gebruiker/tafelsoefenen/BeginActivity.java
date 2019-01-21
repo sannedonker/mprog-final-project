@@ -28,7 +28,7 @@ public class BeginActivity extends AppCompatActivity {
 
         // create a list with (amount of exercises, boolean, multiplications that need to be practiced)
         ArrayList<Integer> exercisesList = new ArrayList<>();
-        exercisesList.addAll(Arrays.asList(100, 1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
+        exercisesList.addAll(Arrays.asList(100, 1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
 
         Intent intent = new Intent(BeginActivity.this, CalculateActivity.class);
         intent.putExtra("exercisesList", exercisesList);

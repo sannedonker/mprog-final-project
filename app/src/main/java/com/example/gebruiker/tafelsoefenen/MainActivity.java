@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     // go to calculate activity
     public void calculateClick(View view) {
         ArrayList<Integer> exercisesList = new ArrayList<>();
-        exercisesList.addAll(Arrays.asList(20, 1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
+        exercisesList.addAll(Arrays.asList(20, 1, 1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
 
         Intent intent = new Intent(MainActivity.this, CalculateActivity.class);
         intent.putExtra("exercisesList", exercisesList);
@@ -54,4 +54,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, InfoActivity.class);
         startActivity(intent);    }
 
+    // go to trophy activity
+    public void trophyClick(View view) {
+        Intent intent = new Intent(MainActivity.this, TrophyActivity.class);
+        startActivity(intent);    }
 }

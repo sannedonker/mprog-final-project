@@ -56,6 +56,7 @@ public class SpecificActivity extends AppCompatActivity {
             int amount = practiceList.size() * 10;
             exercisesList.add(amount);
             exercisesList.add(0);
+            exercisesList.add(0);
             exercisesList.addAll(practiceList);
 
             // go to calculate activity

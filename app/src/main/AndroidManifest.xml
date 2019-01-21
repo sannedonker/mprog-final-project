@@ -16,15 +16,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CalculateActivity"
-            android:windowSoftInputMode="stateVisible"/>
+        <activity
+            android:name=".CalculateActivity"
+            android:windowSoftInputMode="stateVisible" />
         <activity android:name=".SpecificActivity" />
         <activity android:name=".ResetActivity" />
         <activity android:name=".InfoActivity" />
         <activity android:name=".ResultActivity" />
         <activity android:name=".ResultListActivity" />
         <activity android:name=".BeginActivity" />
-        <activity android:name=".ResultListSpecificActivity"></activity>
+        <activity android:name=".ResultListSpecificActivity" />
+        <activity android:name=".TrophyActivity"></activity>
     </application>
 
 </manifest>
