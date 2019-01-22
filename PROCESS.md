@@ -49,3 +49,13 @@ Tussendoor is er gewerkt aan een aantal kleine todo's zoals:
 - het toevoegen van een progressbar in de calculate activitity
 - de kleren van de knoppen van de specific activity aanpassen als erop is geklikt
 - input verplicht maken bij specific activity
+
+# Dag 10
+Het is gelukt om de data in de pie charts te krijgen! Dit bleek makkelijker dan verwacht, er hoefde slechts een functie op een andere manier aangeroepen te worden. Wel beginnen de piecharts allemaal rechts onder met het invullen van de data. Hier is nog geen oplossing voor gevonden, ik vermoed dat dit in de standaardinstellingen van de hellocharts library zit.
+
+Verder is er een nieuwe activity aangemaakt. Het is een tweede resultlist activity zodat er vanuit de resultaten en vanuit de rekenschermen naar een andere activity wordt gegaan. Deze twee activities hebben beide een andere vormgeving gekregen.
+
+(todo: plaatjes toevoegen)
+
+# Weekend
+Er is een nieuwe (effectievere) manier van het shuffelen van de sommen gemaakt. Verder is het vaker voorkomen van moeilijkere sommen geimplementeerd. Er hoeft hiervoor alleen nog maar een boolean worden toegevoegd die vanuit de verschillende activiteiten wordt meegegeven. Deze boolean gaat over het feit of het wel of niet nodig is om op het level te letten.
