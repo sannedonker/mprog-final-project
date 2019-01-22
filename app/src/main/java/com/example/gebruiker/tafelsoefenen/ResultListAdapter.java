@@ -41,8 +41,6 @@ public class ResultListAdapter extends ArrayAdapter {
         TextView exerciseView = ((TextView) convertView.findViewById(R.id.exercise_tv));
         exerciseView.setText(current_exercise.getMultiplication());
         TextView answerView = ((TextView) convertView.findViewById(R.id.answer_tv));
-        Log.d("test", "getView: answerView" + answerView);
-        Log.d("test", "getView: answer " + current_exercise.getAnswer());
         String test = String.valueOf(current_exercise.getAnswer());
         answerView.setText(test);
 

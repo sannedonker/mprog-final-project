@@ -49,7 +49,7 @@ public class SpecificActivity extends AppCompatActivity {
     public void practiceClick(View view) {
 
         if (practiceList.size() == 0) {
-            Toast.makeText(this,"Select at least one multiplication",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Selecteer tenminste één tafel",Toast.LENGTH_LONG).show();
         } else {
 
             // create a list with (amount of exercises, boolean, multiplications that need to be practiced)

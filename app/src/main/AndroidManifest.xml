@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".TrophyEarnedActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,7 +27,8 @@
         <activity android:name=".ResultListActivity" />
         <activity android:name=".BeginActivity" />
         <activity android:name=".ResultListSpecificActivity" />
-        <activity android:name=".TrophyActivity"></activity>
+        <activity android:name=".TrophyActivity" />
+        <activity android:name=".TrophySpecificActivity" />
     </application>
 
 </manifest>

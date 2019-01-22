@@ -43,7 +43,7 @@ public class TrophyDatabaseHelper extends SQLiteOpenHelper {
                 "drawable", thisContext.getPackageName());
         ArrayList<String> descriptions = new ArrayList<>();
         for (int i = 0; i < names.length - 1; i++) {
-            descriptions.add("Je hebt alle somen van de tafel van " + i + " gememoriseerd!");
+            descriptions.add("Je hebt alle somen van de tafel van " + (i + 1) + " gememoriseerd!");
         }
         descriptions.add("Je hebt alle sommen van alle tafels gememoriseerd!");
 
@@ -78,6 +78,70 @@ public class TrophyDatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM trophies", null);
         return cursor;
+    }
+
+    // select earned column
+    public ArrayList<Integer> selectEarned() {
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT earned FROM trophies", null);
+
+        ArrayList<Integer> earned = new ArrayList<>();
+        try {
+            while (cursor.moveToNext()) {
+                earned.add(cursor.getInt(0));
+            }
+        } finally {
+            cursor.close();
+        }
+
+        return earned;
+    }
+
+    // select newly earned trophies
+    public ArrayList<Trophy> selectNewTrophies(ArrayList<Integer> trophyIds){
+
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor;
+
+        // convert exercisesList to string
+        String trophiesEarned;
+        if (trophyIds.size() > 1) {
+            trophiesEarned = "(";
+            for (int i = 0; i < trophyIds.size(); i ++) {
+                if (i != trophyIds.size() - 1) {
+                    trophiesEarned = trophiesEarned + trophyIds.get(i) + ", ";
+                } else {
+                    trophiesEarned = trophiesEarned + trophyIds.get(i) + ")";
+                }
+            }
+
+            cursor = db.rawQuery("SELECT * FROM trophies WHERE _id IN " + trophiesEarned, null);
+
+        } else {
+            trophiesEarned = trophyIds.get(0).toString();
+            cursor = db.rawQuery("SELECT * FROM trophies WHERE _id = " + trophiesEarned, null);
+
+        }
+
+        Log.d("test", "selectNewTrophies: trophyIds " + trophyIds);
+        Log.d("test", "selectNewTrophies: trophiesEarned " + trophiesEarned);
+//        Cursor cursor = db.rawQuery("SELECT * FROM trophies WHERE id IN " + trophiesEarned, null);
+
+        Log.d("test", "selectNewTrophies: cursor columns " + cursor.getColumnCount());
+
+        ArrayList<Trophy> newTrophies = new ArrayList<>();
+        try {
+            while(cursor.moveToNext()) {
+                Log.d("test", "selectNewTrophies: zo vaak kom ik hier");
+                String name = cursor.getString(cursor.getColumnIndex("name"));
+                String description = cursor.getString(cursor.getColumnIndex("description"));
+                newTrophies.add(new Trophy(name, description));
+            }
+        } finally {
+            cursor.close();
+        }
+
+        return newTrophies;
     }
 
     // update trophies
@@ -122,5 +186,38 @@ public class TrophyDatabaseHelper extends SQLiteOpenHelper {
             String[] dbId = new String[] {"" + 11};
             dbTrophies.update("trophies", values,"_id=?", dbId);
         }
+    }
+
+    // reset all earnedTrophies
+    public void resetTrophies() {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("UPDATE trophies SET earned = 0");
+    }
+
+    // check if new Trophies are earned
+    public HashMap<Boolean, ArrayList<Integer>> checkTrophies(ArrayList<Integer> previouslyEarned) {
+        ArrayList<Integer> earned = selectEarned();
+
+        Log.d("test", "checkTrophies: previously " + previouslyEarned);
+        Log.d("test", "checkTrophies: nu " + earned);
+
+        // check which trophies are just earned
+        ArrayList<Integer> earnedNew = new ArrayList<>();
+        ArrayList<Integer> earnedPreviously = new ArrayList<>();
+        for (int i = 0; i < earned.size(); i++) {
+            if (earned.get(i) != previouslyEarned.get(i)){
+                earnedNew.add(i + 1);
+            } else {
+                earnedPreviously.add(i + 1);
+            }
+        }
+
+        HashMap<Boolean, ArrayList<Integer>> earnedMap = new HashMap<>();
+        earnedMap.put(true, earnedNew);
+        earnedMap.put(false, earnedPreviously);
+
+        Log.d("test", "checkTrophies: " + earnedMap);
+
+        return earnedMap;
     }
 }

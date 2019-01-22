@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 public class ResetActivity extends AppCompatActivity {
 
@@ -15,13 +16,14 @@ public class ResetActivity extends AppCompatActivity {
 
     public void doReset(View view) {
 
-        // TODO: geeft geen error maar weet niet zeker of het werkt!
         // reset database to original database
-        DatabaseHelper db = DatabaseHelper.getInstance(getApplicationContext());
-        db.resetLevel();
+        DatabaseHelper dbExercise = DatabaseHelper.getInstance(getApplicationContext());
+        dbExercise.resetLevel();
 
-        // TODO: show confirmation message that the app has been resetted
+        TrophyDatabaseHelper dbTrophy = TrophyDatabaseHelper.getInstance(getApplicationContext());
+        dbTrophy.resetTrophies();
 
+        Toast.makeText(this,"Je resultaten en trofeeën zijn gewist.",Toast.LENGTH_LONG).show();
 
         Intent intent = new Intent(ResetActivity.this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

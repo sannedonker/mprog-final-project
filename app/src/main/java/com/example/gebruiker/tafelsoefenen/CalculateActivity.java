@@ -17,6 +17,7 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -28,6 +29,10 @@ public class CalculateActivity extends AppCompatActivity {
     // TODO: meer functies maken (nu alles in onCreate)
 
     DatabaseHelper db;
+
+    Intent intent;
+
+    ArrayList<Integer> previouslyEarned = new ArrayList<>();
 
     ArrayList<String> multiplications = new ArrayList<>();
     ArrayList<Integer> answers = new ArrayList<>();
@@ -50,8 +55,12 @@ public class CalculateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculate);
 
+        // get info of which trophies are already earned
+        TrophyDatabaseHelper dbTrophy = TrophyDatabaseHelper.getInstance(getApplicationContext());
+        previouslyEarned = dbTrophy.selectEarned();
+
         // get info of the exercises that need to be practiced
-        Intent intent = getIntent();
+        intent = getIntent();
         ArrayList<Integer> exercisesList = intent.getIntegerArrayListExtra("exercisesList");
 
         // set necessary info in variables
@@ -112,8 +121,6 @@ public class CalculateActivity extends AppCompatActivity {
                     levels.add(exercise.getLevel());
                     ids.add(exercise.getId());
                 }
-
-                Log.d("test", "onCreate: exercise level " + exercise.getMultiplication() + " " + exercise.getLevel());
             }
 
         } finally {
@@ -203,8 +210,33 @@ public class CalculateActivity extends AppCompatActivity {
 
                         } else {
 
-                            // go to result list activity and give the results of the exercises to that activity
-                            Intent intent = new Intent(CalculateActivity.this, ResultListActivity.class);
+                            // TODO: dit uiteiendleijk in een losse functie maken
+
+                            TrophyDatabaseHelper dbTrophy = TrophyDatabaseHelper.getInstance(getApplicationContext());
+                            DatabaseHelper dbExercises = DatabaseHelper.getInstance(getApplicationContext());
+                            dbTrophy.updateTrophies(dbExercises);
+                            HashMap<Boolean, ArrayList<Integer>> earnedMap = dbTrophy
+                                    .checkTrophies(previouslyEarned);
+
+                            Log.d("test", "onEditorAction: " + earnedMap);
+                            Log.d("test", "onEdiotrAction: size " + earnedMap.get(true).size());
+
+                            ArrayList<Integer> trophiesEarned = new ArrayList<>();
+                            for (int i = 0; i < earnedMap.get(true).size(); i++) {
+                                Log.d("test", "onEditorAction: kom ik in de for");
+                                trophiesEarned.add(earnedMap.get(true).get(i));
+                            }
+
+                            Log.d("test", "onEditorAction: trophiesEarned " + trophiesEarned);
+
+                            if (trophiesEarned.size() != 0) {
+                                intent = new Intent(CalculateActivity.this, TrophyEarnedActivity.class);
+                                intent.putExtra("trophiesEarned", trophiesEarned);
+                            } else {
+                                // go to result list activity and give the results of the exercises to that activity
+                                intent = new Intent(CalculateActivity.this, ResultListActivity.class);
+                            }
+
                             intent.putExtra("resultExercises", resultExercises);
                             intent.putExtra("givenAnswers", givenAnswers);
                             startActivity(intent);

@@ -70,6 +70,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // select needed exercises from database
     public Cursor selectExercises(ArrayList exercisesList) {
 
+        // TODO dit in een losse functie zetten want gebruik het ook in trophyDB
         // convert exercisesList to string
         String multiplications = "(";
         for (int i = 0; i < exercisesList.size(); i ++) {
