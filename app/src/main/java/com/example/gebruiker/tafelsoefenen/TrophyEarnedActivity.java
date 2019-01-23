@@ -1,6 +1,7 @@
 package com.example.gebruiker.tafelsoefenen;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,12 +26,6 @@ public class TrophyEarnedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trophy_earned);
 
-//        ConfettiView confettiView = findViewById(R.id.confetti_view);
-//        ViewGroup container = findViewById(R.id.container);
-//
-//        CommonConfetti.rainingConfetti(container, new int[] { Color.BLACK })
-//                .infinite();
-
         Intent intent = getIntent();
         ArrayList<Integer> trophiesEarned = intent.getIntegerArrayListExtra("trophiesEarned");
         resultExercises = (ArrayList<Exercise>) intent.getSerializableExtra("resultExercises");
@@ -40,11 +35,9 @@ public class TrophyEarnedActivity extends AppCompatActivity {
         TrophyDatabaseHelper db = TrophyDatabaseHelper.getInstance(getApplicationContext());
         newTrophies = db.selectNewTrophies(trophiesEarned);
 
-        // set TextViews
+        // set name of trophy
         TextView name = findViewById(R.id.name);
-//        TextView description = findViewById(R.id.description);
         name.setText(newTrophies.get(0).getName());
-//        description.setText(newTrophies.get(0).getDescription());
 
         newTrophies.remove(0);
     }
@@ -55,11 +48,9 @@ public class TrophyEarnedActivity extends AppCompatActivity {
         if (newTrophies.size() >= 1) {
             Trophy trophy = newTrophies.get(0);
 
-            // set TextViews
+            // set name of trophy
             TextView name = findViewById(R.id.name);
-//            TextView description = findViewById(R.id.description);
             name.setText(trophy.getName());
-//            description.setText(trophy.getDescription());
 
             newTrophies.remove(0);
         }
@@ -72,5 +63,23 @@ public class TrophyEarnedActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
+    }
+
+    // TODO deze functie staat ergens anders ook --> kijken hoe ik dit maar 1x ergens hoef te hebben staan
+    public void makeConfetti(View view) {
+
+        // set colors
+        final Resources res = getResources();
+        int green, yellow, orange, red;
+        green = res.getColor(R.color.green);
+        yellow = res.getColor(R.color.yellow);
+        orange = res.getColor(R.color.orange);
+        red = res.getColor(R.color.red);
+        int[] colors = new int[] { green, yellow, orange, red };
+
+        // make confetti
+        ViewGroup container = findViewById(R.id.container);
+        CommonConfetti.rainingConfetti(container, colors)
+                .stream(5000);
     }
 }
