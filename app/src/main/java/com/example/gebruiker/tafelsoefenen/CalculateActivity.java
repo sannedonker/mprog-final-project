@@ -138,6 +138,8 @@ public class CalculateActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         progressBar.setMax(amount);
 
+
+        //TODO dit in een losse functie
         EditText editText = (EditText) findViewById(R.id.answerField);
         editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override

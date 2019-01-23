@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    // TODO startActivity( new Intent.......)
+
     // go to specific activity
     public void specificClick(View view) {
         Intent intent = new Intent(MainActivity.this, SpecificActivity.class);

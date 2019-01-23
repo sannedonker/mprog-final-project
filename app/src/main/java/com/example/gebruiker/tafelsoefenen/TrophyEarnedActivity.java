@@ -1,11 +1,16 @@
 package com.example.gebruiker.tafelsoefenen;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.github.jinatonic.confetti.CommonConfetti;
+import com.github.jinatonic.confetti.ConfettiView;
 
 import java.util.ArrayList;
 
@@ -20,7 +25,11 @@ public class TrophyEarnedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trophy_earned);
 
-        Log.d("test", "onCreate: kom ik hier???");
+//        ConfettiView confettiView = findViewById(R.id.confetti_view);
+//        ViewGroup container = findViewById(R.id.container);
+//
+//        CommonConfetti.rainingConfetti(container, new int[] { Color.BLACK })
+//                .infinite();
 
         Intent intent = getIntent();
         ArrayList<Integer> trophiesEarned = intent.getIntegerArrayListExtra("trophiesEarned");
@@ -33,9 +42,9 @@ public class TrophyEarnedActivity extends AppCompatActivity {
 
         // set TextViews
         TextView name = findViewById(R.id.name);
-        TextView description = findViewById(R.id.description);
+//        TextView description = findViewById(R.id.description);
         name.setText(newTrophies.get(0).getName());
-        description.setText(newTrophies.get(0).getDescription());
+//        description.setText(newTrophies.get(0).getDescription());
 
         newTrophies.remove(0);
     }
@@ -48,9 +57,9 @@ public class TrophyEarnedActivity extends AppCompatActivity {
 
             // set TextViews
             TextView name = findViewById(R.id.name);
-            TextView description = findViewById(R.id.description);
+//            TextView description = findViewById(R.id.description);
             name.setText(trophy.getName());
-            description.setText(trophy.getDescription());
+//            description.setText(trophy.getDescription());
 
             newTrophies.remove(0);
         }
