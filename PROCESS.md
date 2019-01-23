@@ -59,3 +59,15 @@ Verder is er een nieuwe activity aangemaakt. Het is een tweede resultlist activi
 
 # Weekend
 Er is een nieuwe (effectievere) manier van het shuffelen van de sommen gemaakt. Verder is het vaker voorkomen van moeilijkere sommen geimplementeerd. Er hoeft hiervoor alleen nog maar een boolean worden toegevoegd die vanuit de verschillende activiteiten wordt meegegeven. Deze boolean gaat over het feit of het wel of niet nodig is om op het level te letten.
+
+# Dag 11
+Vandaag is er een nieuwe input methode geimplementeerd voor de CalculateActivity. Tijdens het weekend is er veel om feedback gevraagd en er kwam naar voren dat de 'ok' knop ver van het toetsenbord af was. Vandaar is er ervoor gekozen om een send optie in het toetsenbord te gebruiken.
+
+(todo: plaatjes toevoegen)
+
+Verder zijn troffeeen geimplementeerd. Je kan nu troffeeen verdienen per tafel, als je een tafel helemaal gememoriseerd hebt, en als je alle tafels helemaal gememoriseerd hebt. Je kan troffeeen niet verliezen. Morgen zal er gewerkt worden aan een onClickListener zodat de troffeeen beter bekeken kunnen worden (uitleg erbij). Ook zal er gewerkt worden aan een manier die de gebruiker verteld dat er een nieuwe troffee is verdiend.
+
+# Dag 12
+Vandaag is er een onClickListener gemaakt in de TrophyActivity. De troffeeen kunnen nu per stuk bekeken worden. Ook is er een TrophyEarnedActivity aangemaakt. Met behulp van deze activity wordt wanneer je een trofee hebt gehaald dit laten zien. 
+
+Verder is er oriëntatie gedaan naar het krijgen van confetti over je scherm wanneer er een trofee is verdiend. Eerst is er geprobeerd een library te gebruiken die is geschreven in kotlin, dit is niet gelukt. Er is wel ook een library gevonden die loopt op java: https://github.com/jinatonic/confetti. Morgen wordt hier verder onderzoek naar gedaan en hopelijk geimplementeerd.
