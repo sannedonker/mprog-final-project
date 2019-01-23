@@ -71,3 +71,6 @@ Verder zijn troffeeen geimplementeerd. Je kan nu troffeeen verdienen per tafel, 
 Vandaag is er een onClickListener gemaakt in de TrophyActivity. De troffeeen kunnen nu per stuk bekeken worden. Ook is er een TrophyEarnedActivity aangemaakt. Met behulp van deze activity wordt wanneer je een trofee hebt gehaald dit laten zien. 
 
 Verder is er oriëntatie gedaan naar het krijgen van confetti over je scherm wanneer er een trofee is verdiend. Eerst is er geprobeerd een library te gebruiken die is geschreven in kotlin, dit is niet gelukt. Er is wel ook een library gevonden die loopt op java: https://github.com/jinatonic/confetti. Morgen wordt hier verder onderzoek naar gedaan en hopelijk geimplementeerd.
+
+# Dag 13
+Vandaag is er gewerkt aan het implementeren van confetti. Dit heeft veel langer geduurd dan nodig was. Omdat ik niet doorhad dat de confetti alleen werkte als je hem later aanroept (dus via een button oid). Wel is hierdoor enige kennis opgedaan over het begrijpen van externe libraries en andermans code. De confetti is geimplementeerd als een 'easter egg'. De button is namelijk een image button dus het is niet perse duidelijk dat de confetti optie er is.
