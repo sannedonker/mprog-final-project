@@ -1,13 +1,14 @@
-package com.example.gebruiker.tafelsoefenen;
+package com.example.gebruiker.tafelsoefenen.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.ListView;
 
-import java.lang.reflect.Array;
+import com.example.gebruiker.tafelsoefenen.Exercise;
+import com.example.gebruiker.tafelsoefenen.R;
+import com.example.gebruiker.tafelsoefenen.ResultListAdapter;
+
 import java.util.ArrayList;
 
 public class ResultListActivity extends AppCompatActivity {

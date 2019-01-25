@@ -1,17 +1,18 @@
-package com.example.gebruiker.tafelsoefenen;
+package com.example.gebruiker.tafelsoefenen.Activities;
 
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.gebruiker.tafelsoefenen.Exercise;
+import com.example.gebruiker.tafelsoefenen.R;
+import com.example.gebruiker.tafelsoefenen.Trophy;
+import com.example.gebruiker.tafelsoefenen.TrophyDatabaseHelper;
 import com.github.jinatonic.confetti.CommonConfetti;
-import com.github.jinatonic.confetti.ConfettiView;
 
 import java.util.ArrayList;
 

@@ -1,7 +1,9 @@
-package com.example.gebruiker.tafelsoefenen;
+package com.example.gebruiker.tafelsoefenen.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.gebruiker.tafelsoefenen.R;
 
 public class InfoActivity extends AppCompatActivity {
 

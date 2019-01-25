@@ -1,30 +1,19 @@
-package com.example.gebruiker.tafelsoefenen;
+package com.example.gebruiker.tafelsoefenen.Activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ListView;
-import android.widget.TextView;
 
-import java.io.Serializable;
+import com.example.gebruiker.tafelsoefenen.DatabaseHelper;
+import com.example.gebruiker.tafelsoefenen.Exercise;
+import com.example.gebruiker.tafelsoefenen.PieChartAdapter;
+import com.example.gebruiker.tafelsoefenen.R;
+
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
-import lecho.lib.hellocharts.model.Line;
-import lecho.lib.hellocharts.model.LineChartData;
-import lecho.lib.hellocharts.model.PieChartData;
-import lecho.lib.hellocharts.model.PointValue;
-import lecho.lib.hellocharts.model.SliceValue;
-import lecho.lib.hellocharts.view.LineChartView;
-import lecho.lib.hellocharts.view.PieChartView;
 
 public class ResultActivity extends AppCompatActivity {
 

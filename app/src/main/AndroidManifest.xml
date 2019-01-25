@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TrophyEarnedActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activities.TrophyEarnedActivity" />
+        <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,17 +18,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CalculateActivity"
+            android:name=".Activities.CalculateActivity"
             android:windowSoftInputMode="stateVisible" />
-        <activity android:name=".SpecificActivity" />
-        <activity android:name=".ResetActivity" />
-        <activity android:name=".InfoActivity" />
-        <activity android:name=".ResultActivity" />
-        <activity android:name=".ResultListActivity" />
-        <activity android:name=".BeginActivity" />
-        <activity android:name=".ResultListSpecificActivity" />
-        <activity android:name=".TrophyActivity" />
-        <activity android:name=".TrophySpecificActivity" />
+        <activity android:name=".Activities.SpecificActivity" />
+        <activity android:name=".Activities.ResetActivity" />
+        <activity android:name=".Activities.InfoActivity" />
+        <activity android:name=".Activities.ResultActivity" />
+        <activity android:name=".Activities.ResultListActivity" />
+        <activity android:name=".Activities.BeginActivity" />
+        <activity android:name=".Activities.ResultListSpecificActivity" />
+        <activity android:name=".Activities.TrophyActivity" />
+        <activity android:name=".Activities.TrophySpecificActivity" />
     </application>
 
 </manifest>

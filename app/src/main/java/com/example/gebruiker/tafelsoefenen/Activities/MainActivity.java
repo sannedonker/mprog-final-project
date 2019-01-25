@@ -1,10 +1,11 @@
-package com.example.gebruiker.tafelsoefenen;
+package com.example.gebruiker.tafelsoefenen.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+
+import com.example.gebruiker.tafelsoefenen.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;

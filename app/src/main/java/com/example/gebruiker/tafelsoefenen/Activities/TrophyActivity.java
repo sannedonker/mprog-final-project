@@ -1,20 +1,19 @@
-package com.example.gebruiker.tafelsoefenen;
+package com.example.gebruiker.tafelsoefenen.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
-import com.github.jinatonic.confetti.CommonConfetti;
-
-import java.util.ArrayList;
+import com.example.gebruiker.tafelsoefenen.DatabaseHelper;
+import com.example.gebruiker.tafelsoefenen.R;
+import com.example.gebruiker.tafelsoefenen.Trophy;
+import com.example.gebruiker.tafelsoefenen.TrophyAdapter;
+import com.example.gebruiker.tafelsoefenen.TrophyDatabaseHelper;
 
 public class TrophyActivity extends AppCompatActivity {
 

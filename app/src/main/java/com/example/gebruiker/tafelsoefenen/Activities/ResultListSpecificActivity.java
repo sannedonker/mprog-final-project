@@ -1,9 +1,13 @@
-package com.example.gebruiker.tafelsoefenen;
+package com.example.gebruiker.tafelsoefenen.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
+
+import com.example.gebruiker.tafelsoefenen.Exercise;
+import com.example.gebruiker.tafelsoefenen.R;
+import com.example.gebruiker.tafelsoefenen.ResultListSpecificAdapter;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.example.gebruiker.tafelsoefenen;
+package com.example.gebruiker.tafelsoefenen.Activities;
 
 import android.content.Intent;
 import android.content.res.Resources;
@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.gebruiker.tafelsoefenen.R;
+import com.example.gebruiker.tafelsoefenen.Trophy;
 import com.github.jinatonic.confetti.CommonConfetti;
 
 public class TrophySpecificActivity extends AppCompatActivity {
