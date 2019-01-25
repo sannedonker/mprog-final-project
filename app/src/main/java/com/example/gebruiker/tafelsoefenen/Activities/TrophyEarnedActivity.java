@@ -27,6 +27,7 @@ public class TrophyEarnedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trophy_earned);
 
+        // get resultExercises and givenAnswers from previous activity
         Intent intent = getIntent();
         ArrayList<Integer> trophiesEarned = intent.getIntegerArrayListExtra("trophiesEarned");
         resultExercises = (ArrayList<Exercise>) intent.getSerializableExtra("resultExercises");
@@ -43,6 +44,7 @@ public class TrophyEarnedActivity extends AppCompatActivity {
         newTrophies.remove(0);
     }
 
+    // shows user a new trophy or sends it to ResultListActivity
     public void newTrophyClick(View view) {
 
         // check if more trophies are earned
@@ -80,7 +82,6 @@ public class TrophyEarnedActivity extends AppCompatActivity {
 
         // make confetti
         ViewGroup container = findViewById(R.id.container);
-        CommonConfetti.rainingConfetti(container, colors)
-                .stream(5000);
+        CommonConfetti.rainingConfetti(container, colors).stream(5000);
     }
 }

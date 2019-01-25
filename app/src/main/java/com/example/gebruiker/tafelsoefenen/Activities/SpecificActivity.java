@@ -27,10 +27,10 @@ public class SpecificActivity extends AppCompatActivity {
     }
 
     // add or remove multiplication to practice list and change color of clikced button
-    public void timesSelected(View view) {
+    public void multiplicationSelected(View view) {
 
         int id = view.getId();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < buttons.length; i++) {
             if (id == buttons[i]) {
                 if (practiceList.contains(i + 1)) {
                     practiceList.remove(Integer.valueOf(1 + i));
@@ -46,13 +46,19 @@ public class SpecificActivity extends AppCompatActivity {
         }
     }
 
+
+    // send user to CalculateActivity
     public void practiceClick(View view) {
 
+        // checks if user selected at least one multiplication
         if (practiceList.size() == 0) {
+
+            // show toast if user didn't select a multiplication
             Toast.makeText(this,"Selecteer tenminste één tafel",Toast.LENGTH_LONG).show();
+
         } else {
 
-            // create a list with (amount of exercises, boolean, multiplications that need to be practiced)
+            // create a list with (amount of exercises, booleans, multiplications that need to be practiced)
             int amount = practiceList.size() * 10;
             exercisesList.add(amount);
             exercisesList.add(0);

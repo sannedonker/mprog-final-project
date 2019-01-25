@@ -1,6 +1,5 @@
 package com.example.gebruiker.tafelsoefenen.Activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
@@ -42,29 +41,18 @@ public class TrophyActivity extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-            ConfettiSample testSample = new ConfettiSample(0, TrophySpecificActivity.class);
-
+            // get correct trophy from cursor
             Cursor cursor = (Cursor) parent.getItemAtPosition(position);
             String name = cursor.getString(cursor.getColumnIndex("name"));
             String description = cursor.getString(cursor.getColumnIndex("description"));
             int earned = cursor.getInt(cursor.getColumnIndex("earned"));
-
             Trophy trophy = new Trophy(name, description, earned);
 
-            Intent intent = new Intent(TrophyActivity.this, testSample.targetActivityClass);
+            // send user and trophy to TrophySpecificActivity
+            Intent intent = new Intent(TrophyActivity.this, TrophySpecificActivity.class);
             intent.putExtra("trophy", trophy);
             startActivity(intent);
 
-        }
-    }
-
-    private static class ConfettiSample {
-        final int nameResId;
-        final Class<? extends Activity> targetActivityClass;
-
-        private ConfettiSample(int nameResId, Class<? extends Activity> targetActivityClass) {
-            this.nameResId = nameResId;
-            this.targetActivityClass = targetActivityClass;
         }
     }
 }

@@ -21,10 +21,12 @@ public class ResultListSpecificActivity extends AppCompatActivity {
 
         // get results from result activity
         Intent intent = getIntent();
-        ArrayList<Exercise> results = (ArrayList<Exercise>) intent.getSerializableExtra("resultExercises");
+        ArrayList<Exercise> results = (ArrayList<Exercise>) intent.getSerializableExtra(
+                "resultExercises");
 
         // instantiate the adapter and attach the adapter to the listview
-        ResultListSpecificAdapter adapter = new ResultListSpecificAdapter(this, R.layout.result_item, results);
+        ResultListSpecificAdapter adapter = new ResultListSpecificAdapter(this,
+                R.layout.result_item, results);
         ListView lv = findViewById(R.id.lv_result_specific);
         lv.setAdapter(adapter);
     }

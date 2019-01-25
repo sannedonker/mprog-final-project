@@ -28,10 +28,11 @@ public class TrophySpecificActivity extends AppCompatActivity {
         TextView name = findViewById(R.id.name);
         name.setText(trophy.getName());
 
-        // if trophy is earned show trophy image and description else disable confetti option
+        // if trophy is earned show trophy image and description, else disable confetti option
         ImageButton image = findViewById(R.id.trophy_image);
         if (trophy.getEarned() == 1) {
-            image.setImageResource(getResources().getIdentifier("trophy_1", "drawable", getPackageName()));
+            image.setImageResource(getResources().getIdentifier("trophy_1",
+                    "drawable", getPackageName()));
             TextView description = findViewById(R.id.description);
             description.setText(trophy.getDescription());
         } else {
@@ -39,6 +40,7 @@ public class TrophySpecificActivity extends AppCompatActivity {
         }
     }
 
+    // when imagebutton is clicked a stream of confetti falls down from top of screen
     public void makeConfetti(View view) {
 
         // set colors
@@ -52,7 +54,6 @@ public class TrophySpecificActivity extends AppCompatActivity {
 
         // make confetti
         ViewGroup container = findViewById(R.id.container);
-        CommonConfetti.rainingConfetti(container, colors)
-                .stream(5000);
+        CommonConfetti.rainingConfetti(container, colors).stream(5000);
     }
 }

@@ -103,50 +103,10 @@ public class CalculateActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         progressBar.setMax(amount);
 
+        // submit given answer to db
+        submitAnswer();
 
-        // TODO dit in een losse functie HOE????
         // TODO: hiernaar refereren: https://developer.android.com/training/keyboard-input/style#java
-        EditText editText = (EditText) findViewById(R.id.answerField);
-        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                boolean handled = false;
-                if (actionId == EditorInfo.IME_ACTION_SEND) {
-                    String answerCheck = ((TextView) findViewById(R.id.answerField)).getText().toString();
-
-                    // if answer is given proceed
-                    if (!answerCheck.equals("")) {
-                        endTime = System.currentTimeMillis();
-
-                        // determine the correctness of the answer
-                        int answer = Integer.parseInt(answerCheck);
-                        int correctness = determineCorrectness(answer);
-
-                        // add exercise to result list
-                        resultExercises.add(new Exercise(multiplications.get(counter),
-                                answers.get(counter), correctness));
-
-                        // add answer to the given answers list
-                        givenAnswers.add(answer);
-
-                        // update level in database if needed
-                        if (levelBoolean == 1) {
-                            updateLevel(correctness);
-                        }
-
-                        // check if all exercises are made
-                        if (counter < amount) {
-                            toNextQuestion();
-                        } else {
-                            toNextActivity();
-                        }
-                    }
-
-                    handled = true;
-                }
-                return handled;
-            }
-        });
     }
 
 
@@ -204,6 +164,53 @@ public class CalculateActivity extends AppCompatActivity {
         }
     }
 
+
+    // checks if answer is given and submits given answer
+    public void submitAnswer() {
+
+        // TODO VERWIJZEN NAAR DE LINK!!!! + EVT EXTRA COMMENT OVER DE HELE LISTENER??
+        EditText editText = (EditText) findViewById(R.id.answerField);
+        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                boolean handled = false;
+                if (actionId == EditorInfo.IME_ACTION_SEND) {
+                    String answerCheck = ((TextView) findViewById(R.id.answerField)).getText().toString();
+
+                    // if answer is given proceed
+                    if (!answerCheck.equals("")) {
+                        endTime = System.currentTimeMillis();
+
+                        // determine the correctness of the answer
+                        int answer = Integer.parseInt(answerCheck);
+                        int correctness = determineCorrectness(answer);
+
+                        // add exercise to result list
+                        resultExercises.add(new Exercise(multiplications.get(counter),
+                                answers.get(counter), correctness));
+
+                        // add answer to the given answers list
+                        givenAnswers.add(answer);
+
+                        // update level in database if needed
+                        if (levelBoolean == 1) {
+                            updateLevel(correctness);
+                        }
+
+                        // check if all exercises are made
+                        if (counter < amount) {
+                            toNextQuestion();
+                        } else {
+                            toNextActivity();
+                        }
+                    }
+
+                    handled = true;
+                }
+                return handled;
+            }
+        });
+    }
 
     // determine the correctness of the answer
     public int determineCorrectness(int answer) {
@@ -282,7 +289,7 @@ public class CalculateActivity extends AppCompatActivity {
 
 
     // update level in database
-    public void updateLevel(int correctness){
+    public void updateLevel(int correctness) {
 
         // determine new level
         int oldLevel = levels.get(counter);
@@ -304,8 +311,7 @@ public class CalculateActivity extends AppCompatActivity {
 
     // makes sure that when pressed back the user goes to the MainActivity screen
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         Intent intent = new Intent(CalculateActivity.this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
