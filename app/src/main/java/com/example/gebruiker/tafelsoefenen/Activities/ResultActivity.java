@@ -18,7 +18,8 @@ import java.util.ArrayList;
 public class ResultActivity extends AppCompatActivity {
 
     private DatabaseHelper db;
-    private PieChartAdapter adapter;
+    ArrayList<Exercise> resultList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +28,7 @@ public class ResultActivity extends AppCompatActivity {
 
         // get updated database and adapter
         db = DatabaseHelper.getInstance(getApplicationContext());
-        adapter = new PieChartAdapter(db.selectLevel());
+        PieChartAdapter adapter = new PieChartAdapter(db.selectLevel());
 
         // set the gridview
         GridView gv = findViewById(R.id.result_gridview);
@@ -36,38 +37,48 @@ public class ResultActivity extends AppCompatActivity {
 
     }
 
-    // when item clicked go to detailactivity screen
+    // when piechart clicked go to ResultListActivity
     private class OnItemClickListener implements AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-            // TODO magic number weghalen
-            ArrayList<Exercise> resultList = new ArrayList<>();
+            // clear resultList
+            resultList = new ArrayList<>();
 
+            // select exercises from database for the clicked multiplication
             ArrayList<Integer> multiplication = new ArrayList<>();
             multiplication.add(position + 1);
             Cursor cursor = db.selectExercises(multiplication);
             try {
-                ArrayList<String> multiplications = new ArrayList<>();
-                ArrayList<Integer> answers = new ArrayList<>();
-                ArrayList<Integer> levels = new ArrayList<>();
-                while (cursor.moveToNext()) {
-                    multiplications.add(cursor.getString(cursor.getColumnIndex("multiplication")));
-                    answers.add(cursor.getInt(cursor.getColumnIndex("answer")));
-                    levels.add(cursor.getInt(cursor.getColumnIndex("level")));
-                }
-
-                for (int i = 0; i < multiplications.size(); i++) {
-                    resultList.add(new Exercise(multiplications.get(i), answers.get(i), levels.get(i)));
-                }
+                getResults(cursor);
             } finally {
                 cursor.close();
             }
 
+            // send user to ResultListSpecificActivity
             Intent intent = new Intent(ResultActivity.this, ResultListSpecificActivity.class);
             intent.putExtra("resultExercises", resultList);
             startActivity(intent);
 
+        }
+    }
+
+    // get results from cursor
+    public void getResults(Cursor cursor) {
+
+        // get info from cursor and add it to lists
+        ArrayList<String> multiplications = new ArrayList<>();
+        ArrayList<Integer> answers = new ArrayList<>();
+        ArrayList<Integer> levels = new ArrayList<>();
+        while (cursor.moveToNext()) {
+            multiplications.add(cursor.getString(cursor.getColumnIndex("multiplication")));
+            answers.add(cursor.getInt(cursor.getColumnIndex("answer")));
+            levels.add(cursor.getInt(cursor.getColumnIndex("level")));
+        }
+
+        // set exercises in resultList
+        for (int i = 0; i < multiplications.size(); i++) {
+            resultList.add(new Exercise(multiplications.get(i), answers.get(i), levels.get(i)));
         }
     }
 

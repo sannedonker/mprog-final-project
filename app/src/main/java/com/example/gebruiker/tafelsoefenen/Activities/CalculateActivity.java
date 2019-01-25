@@ -149,7 +149,11 @@ public class CalculateActivity extends AppCompatActivity {
         });
     }
 
+
+    // get exercises from cursor
     public void getExercise(Cursor cursor, int practiceBoolean) {
+
+        // get info from cursor
         String multiplication = cursor.getString(cursor.getColumnIndex("multiplication"));
         int answer = cursor.getInt(cursor.getColumnIndex("answer"));
         int level = cursor.getInt(cursor.getColumnIndex("level"));
@@ -178,6 +182,7 @@ public class CalculateActivity extends AppCompatActivity {
     }
 
 
+    // select exercises from exercises list
     public void selectExercises() {
 
         // shuffle the exercises
@@ -198,7 +203,6 @@ public class CalculateActivity extends AppCompatActivity {
             }
         }
     }
-
 
 
     // determine the correctness of the answer

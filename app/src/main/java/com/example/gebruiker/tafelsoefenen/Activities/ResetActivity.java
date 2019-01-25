@@ -18,23 +18,26 @@ public class ResetActivity extends AppCompatActivity {
         setContentView(R.layout.activity_reset);
     }
 
+    // reset database
     public void doReset(View view) {
 
-        // reset database to original database
+        // reset databases to original databases
         DatabaseHelper dbExercise = DatabaseHelper.getInstance(getApplicationContext());
         dbExercise.resetLevel();
-
         TrophyDatabaseHelper dbTrophy = TrophyDatabaseHelper.getInstance(getApplicationContext());
         dbTrophy.resetTrophies();
 
-        Toast.makeText(this,"Je resultaten en trofeeën zijn gewist.",Toast.LENGTH_LONG).show();
+        // show toast that reset was succesfull
+        Toast.makeText(this,"Je resultaten en trofeeën zijn gewist.",Toast.LENGTH_LONG)
+                .show();
 
+        // return to MainActivity
         Intent intent = new Intent(ResetActivity.this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 
-    // return to main activity
+    // return to MainActivity
     public void dontReset(View view) {
         Intent intent = new Intent(ResetActivity.this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
