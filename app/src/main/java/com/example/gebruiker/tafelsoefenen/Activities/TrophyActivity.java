@@ -8,10 +8,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
-import com.example.gebruiker.tafelsoefenen.DatabaseHelper;
+import com.example.gebruiker.tafelsoefenen.Databases.DatabaseHelper;
 import com.example.gebruiker.tafelsoefenen.R;
-import com.example.gebruiker.tafelsoefenen.Trophy;
-import com.example.gebruiker.tafelsoefenen.TrophyAdapter;
+import com.example.gebruiker.tafelsoefenen.Classes.Trophy;
+import com.example.gebruiker.tafelsoefenen.Adapters.TrophyAdapter;
 import com.example.gebruiker.tafelsoefenen.TrophyDatabaseHelper;
 
 public class TrophyActivity extends AppCompatActivity {

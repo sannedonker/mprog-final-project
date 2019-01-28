@@ -10,8 +10,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.gebruiker.tafelsoefenen.DatabaseHelper;
-import com.example.gebruiker.tafelsoefenen.Exercise;
+import com.example.gebruiker.tafelsoefenen.Databases.DatabaseHelper;
+import com.example.gebruiker.tafelsoefenen.Classes.Exercise;
 import com.example.gebruiker.tafelsoefenen.R;
 import com.example.gebruiker.tafelsoefenen.TrophyDatabaseHelper;
 
@@ -38,7 +38,7 @@ public class CalculateActivity extends AppCompatActivity {
     ArrayList<Integer> ids = new ArrayList<>();
 
     ArrayList<Exercise> resultExercises = new ArrayList<>();
-    ArrayList<Integer> givenAnswers = new ArrayList<>();
+    ArrayList<String> givenAnswers = new ArrayList<>();
 
     ProgressBar progressBar;
 
@@ -175,14 +175,14 @@ public class CalculateActivity extends AppCompatActivity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 boolean handled = false;
                 if (actionId == EditorInfo.IME_ACTION_SEND) {
-                    String answerCheck = ((TextView) findViewById(R.id.answerField)).getText().toString();
+                    String answerString = ((TextView) findViewById(R.id.answerField)).getText().toString();
 
                     // if answer is given proceed
-                    if (!answerCheck.equals("")) {
+                    if (!answerString.equals("")) {
                         endTime = System.currentTimeMillis();
 
                         // determine the correctness of the answer
-                        int answer = Integer.parseInt(answerCheck);
+                        int answer = Integer.parseInt(answerString);
                         int correctness = determineCorrectness(answer);
 
                         // add exercise to result list
@@ -190,7 +190,7 @@ public class CalculateActivity extends AppCompatActivity {
                                 answers.get(counter), correctness));
 
                         // add answer to the given answers list
-                        givenAnswers.add(answer);
+                        givenAnswers.add(answerString);
 
                         // update level in database if needed
                         if (levelBoolean == 1) {

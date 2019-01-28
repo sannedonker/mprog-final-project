@@ -10,7 +10,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.gebruiker.tafelsoefenen.R;
-import com.example.gebruiker.tafelsoefenen.Trophy;
+import com.example.gebruiker.tafelsoefenen.Classes.Trophy;
 import com.github.jinatonic.confetti.CommonConfetti;
 
 public class TrophySpecificActivity extends AppCompatActivity {

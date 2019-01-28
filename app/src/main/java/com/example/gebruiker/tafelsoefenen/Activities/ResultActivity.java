@@ -8,9 +8,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
-import com.example.gebruiker.tafelsoefenen.DatabaseHelper;
-import com.example.gebruiker.tafelsoefenen.Exercise;
-import com.example.gebruiker.tafelsoefenen.PieChartAdapter;
+import com.example.gebruiker.tafelsoefenen.Databases.DatabaseHelper;
+import com.example.gebruiker.tafelsoefenen.Classes.Exercise;
+import com.example.gebruiker.tafelsoefenen.Adapters.PieChartAdapter;
 import com.example.gebruiker.tafelsoefenen.R;
 
 import java.util.ArrayList;

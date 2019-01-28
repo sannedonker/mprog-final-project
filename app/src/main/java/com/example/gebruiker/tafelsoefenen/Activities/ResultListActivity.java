@@ -5,9 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
 
-import com.example.gebruiker.tafelsoefenen.Exercise;
+import com.example.gebruiker.tafelsoefenen.Classes.Exercise;
 import com.example.gebruiker.tafelsoefenen.R;
-import com.example.gebruiker.tafelsoefenen.ResultListAdapter;
+import com.example.gebruiker.tafelsoefenen.Adapters.ResultListAdapter;
 
 import java.util.ArrayList;
 
@@ -21,7 +21,7 @@ public class ResultListActivity extends AppCompatActivity {
         // get results from CalculateActivity
         Intent intent = getIntent();
         ArrayList<Exercise> results = (ArrayList<Exercise>) intent.getSerializableExtra("resultExercises");
-        ArrayList<Integer> givenAnswers = intent.getIntegerArrayListExtra("givenAnswers");
+        ArrayList<String> givenAnswers = intent.getStringArrayListExtra("givenAnswers");
 
         // instantiate adapter and attach adapter to listview
         ResultListAdapter adapter = new ResultListAdapter(this, R.layout.result_item,

@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.example.gebruiker.tafelsoefenen.Classes.Trophy;
+import com.example.gebruiker.tafelsoefenen.Databases.DatabaseHelper;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -198,10 +201,7 @@ public class TrophyDatabaseHelper extends SQLiteOpenHelper {
     public HashMap<Boolean, ArrayList<Integer>> checkTrophies(ArrayList<Integer> previouslyEarned) {
         ArrayList<Integer> earned = selectEarned();
 
-        Log.d("test", "checkTrophies: previously " + previouslyEarned);
-        Log.d("test", "checkTrophies: nu " + earned);
-
-        // check which trophies are just earned
+        // check which trophies are earned during CalculateActivity
         ArrayList<Integer> earnedNew = new ArrayList<>();
         ArrayList<Integer> earnedPreviously = new ArrayList<>();
         for (int i = 0; i < earned.size(); i++) {
@@ -215,8 +215,6 @@ public class TrophyDatabaseHelper extends SQLiteOpenHelper {
         HashMap<Boolean, ArrayList<Integer>> earnedMap = new HashMap<>();
         earnedMap.put(true, earnedNew);
         earnedMap.put(false, earnedPreviously);
-
-        Log.d("test", "checkTrophies: " + earnedMap);
 
         return earnedMap;
     }

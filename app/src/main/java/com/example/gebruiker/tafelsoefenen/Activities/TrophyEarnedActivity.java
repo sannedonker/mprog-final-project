@@ -8,9 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.gebruiker.tafelsoefenen.Exercise;
+import com.example.gebruiker.tafelsoefenen.Classes.Exercise;
 import com.example.gebruiker.tafelsoefenen.R;
-import com.example.gebruiker.tafelsoefenen.Trophy;
+import com.example.gebruiker.tafelsoefenen.Classes.Trophy;
 import com.example.gebruiker.tafelsoefenen.TrophyDatabaseHelper;
 import com.github.jinatonic.confetti.CommonConfetti;
 

@@ -1,4 +1,4 @@
-package com.example.gebruiker.tafelsoefenen;
+package com.example.gebruiker.tafelsoefenen.Classes;
 
 import android.os.Parcelable;
 

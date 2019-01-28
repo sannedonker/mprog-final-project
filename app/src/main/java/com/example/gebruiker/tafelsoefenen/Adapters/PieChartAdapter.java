@@ -1,13 +1,12 @@
-package com.example.gebruiker.tafelsoefenen;
+package com.example.gebruiker.tafelsoefenen.Adapters;
 
 import android.content.Context;
-import android.database.Cursor;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ResourceCursorAdapter;
+
+import com.example.gebruiker.tafelsoefenen.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +16,14 @@ import lecho.lib.hellocharts.model.PieChartData;
 import lecho.lib.hellocharts.model.SliceValue;
 import lecho.lib.hellocharts.view.PieChartView;
 
+// TODO: VERWIJZEN NAAR DEZE LINK: https://stackoverflow.com/questions/19466757/hashmap-to-listview/19467717#19467717
+
 public class PieChartAdapter extends BaseAdapter {
 
     private final ArrayList levels = new ArrayList();
-    int grey, green, yellow, orange, red;
+    private int grey, green, yellow, orange, red;
+    private String key;
+    private ArrayList<Integer> actualLevels;
 
     Context context;
 
@@ -41,10 +44,9 @@ public class PieChartAdapter extends BaseAdapter {
     }
 
 
-    // TODO: vraag stellen waarvoor dit gebruikt zou kunnen worden
+    // method required but not actually needed for this application
     @Override
     public long getItemId(int position) {
-        // TODO implement you own logic with ID
         return 0;
     }
 
@@ -59,20 +61,31 @@ public class PieChartAdapter extends BaseAdapter {
             result = convertView;
         }
 
+        // get correct multiplication and corresponding results
         Map.Entry<Integer, ArrayList<Integer>> multiplication = getItem(position);
-//        Log.d("test", "getView: wat is multiplication " + multiplication);
+        actualLevels = multiplication.getValue();
+        key = multiplication.getKey().toString();
 
-        ArrayList<Integer> actualLevels = multiplication.getValue();
-        String key = multiplication.getKey().toString();
+        // count the amount of every color in the pieChart
+        countColors();
 
-//        Log.d("test", "getView: wat is actualLevels " + actualLevels);
+        // set the data in the pieChart
+        makePieChart(parent, result);
 
-        // count amounts of colors
+        return result;
+    }
+
+    // count how much of every color is represented in the pieChart
+    public void countColors() {
+
+        // set amount of colors to zero
         grey = 0;
         green = 0;
         yellow = 0;
         orange = 0;
         red = 0;
+
+        // increase amount of color if it corresponds with the level
         for (int i = 0; i < actualLevels.size(); i++) {
             int level = actualLevels.get(i);
             if (level == 0) {
@@ -86,6 +99,10 @@ public class PieChartAdapter extends BaseAdapter {
             } else {
                 red++; }
         }
+    }
+
+    // set pieChartData
+    public void makePieChart(ViewGroup parent, View result) {
 
         // set color values to pieData
         List<SliceValue> pieData = new ArrayList<>();
@@ -106,7 +123,6 @@ public class PieChartAdapter extends BaseAdapter {
         // make sure that pie charts can't be rotated
         pieChartView.setInteractive(false);
 
-        return result;
     }
 }
 

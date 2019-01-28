@@ -1,4 +1,4 @@
-package com.example.gebruiker.tafelsoefenen;
+package com.example.gebruiker.tafelsoefenen.Adapters;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ResourceCursorAdapter;
 import android.widget.TextView;
+
+import com.example.gebruiker.tafelsoefenen.R;
 
 public class TrophyAdapter extends ResourceCursorAdapter {
 

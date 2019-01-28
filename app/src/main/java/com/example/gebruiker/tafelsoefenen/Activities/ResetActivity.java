@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.gebruiker.tafelsoefenen.DatabaseHelper;
+import com.example.gebruiker.tafelsoefenen.Databases.DatabaseHelper;
 import com.example.gebruiker.tafelsoefenen.R;
 import com.example.gebruiker.tafelsoefenen.TrophyDatabaseHelper;
 
