@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.example.gebruiker.tafelsoefenen.Classes.Exercise;
 import com.example.gebruiker.tafelsoefenen.R;
 import com.example.gebruiker.tafelsoefenen.Classes.Trophy;
-import com.example.gebruiker.tafelsoefenen.TrophyDatabaseHelper;
+import com.example.gebruiker.tafelsoefenen.Databases.TrophyDatabaseHelper;
 import com.github.jinatonic.confetti.CommonConfetti;
 
 import java.util.ArrayList;
@@ -68,7 +68,7 @@ public class TrophyEarnedActivity extends AppCompatActivity {
 
     }
 
-    // TODO deze functie staat ergens anders ook --> kijken hoe ik dit maar 1x ergens hoef te hebben staan
+    // when imagebutton is clicked a stream of confetti falls down from top of screen
     public void makeConfetti(View view) {
 
         // set colors

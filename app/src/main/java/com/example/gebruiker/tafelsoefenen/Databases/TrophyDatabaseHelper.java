@@ -1,14 +1,12 @@
-package com.example.gebruiker.tafelsoefenen;
+package com.example.gebruiker.tafelsoefenen.Databases;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import com.example.gebruiker.tafelsoefenen.Classes.Trophy;
-import com.example.gebruiker.tafelsoefenen.Databases.DatabaseHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,6 +15,8 @@ public class TrophyDatabaseHelper extends SQLiteOpenHelper {
 
     private Context thisContext;
     private static TrophyDatabaseHelper instance;
+
+    private int amountMultiplications = 10;
 
     // get correct instance of database
     public static TrophyDatabaseHelper getInstance(Context context) {
@@ -35,29 +35,31 @@ public class TrophyDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("create table trophies ( _id INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + "name String, description String, drawableId INTEGER, earned INTEGER)");
 
+
+        // TODO: meer plaatjes maken!!!!
+
         // set values
-        String names[] = {"Tafel van 1", "Tafel van 2", "Tafel van 3", "Tafel van 4", "Tafel van 5",
-                          "Tafel van 6", "Tafel van 7", "Tafel van 8", "Tafel van 9", "Tafel van 10",
-                          "Alle tafels"};
-
-        // TODO: later verschillende drawable ids OF allemaal zelfde plaatje maar dan ander plaatje
-
-        int drawableId = thisContext.getResources().getIdentifier("trophy_1",
-                "drawable", thisContext.getPackageName());
+        ArrayList<String> names = new ArrayList<>();
         ArrayList<String> descriptions = new ArrayList<>();
-        for (int i = 0; i < names.length - 1; i++) {
+        for (int i = 0; i < amountMultiplications; i++) {
+            names.add("Tafel van " + (i + 1));
             descriptions.add("Je hebt alle somen van de tafel van " + (i + 1) + " gememoriseerd!");
         }
         descriptions.add("Je hebt alle sommen van alle tafels gememoriseerd!");
 
+        int drawableId = thisContext.getResources().getIdentifier("trophy_1",
+                "drawable", thisContext.getPackageName());
+
+        int defaultEarned = 0;
+
         // add values to database
-        for (int i = 0; i < names.length; i++) {
+        for (int i = 0; i < amountMultiplications + 1; i++) {
             ContentValues values = new ContentValues();
 
-            values.put("name", names[i]);
+            values.put("name", names.get(i));
             values.put("description", descriptions.get(i));
             values.put("drawableId", drawableId);
-            values.put("earned", 0);
+            values.put("earned", defaultEarned);
 
             db.insert("trophies", null, values);
         }
@@ -103,39 +105,19 @@ public class TrophyDatabaseHelper extends SQLiteOpenHelper {
     // select newly earned trophies
     public ArrayList<Trophy> selectNewTrophies(ArrayList<Integer> trophyIds){
 
+        // get database
         SQLiteDatabase db = getWritableDatabase();
-        Cursor cursor;
 
         // convert exercisesList to string
-        String trophiesEarned;
-        if (trophyIds.size() > 1) {
-            trophiesEarned = "(";
-            for (int i = 0; i < trophyIds.size(); i ++) {
-                if (i != trophyIds.size() - 1) {
-                    trophiesEarned = trophiesEarned + trophyIds.get(i) + ", ";
-                } else {
-                    trophiesEarned = trophiesEarned + trophyIds.get(i) + ")";
-                }
-            }
+        String trophiesEarned = DatabaseHelper.convertArrayListIntoString(trophyIds);
 
-            cursor = db.rawQuery("SELECT * FROM trophies WHERE _id IN " + trophiesEarned, null);
+        // get cursor from database
+        Cursor cursor = db.rawQuery("SELECT * FROM trophies WHERE _id IN " + trophiesEarned, null);
 
-        } else {
-            trophiesEarned = trophyIds.get(0).toString();
-            cursor = db.rawQuery("SELECT * FROM trophies WHERE _id = " + trophiesEarned, null);
-
-        }
-
-        Log.d("test", "selectNewTrophies: trophyIds " + trophyIds);
-        Log.d("test", "selectNewTrophies: trophiesEarned " + trophiesEarned);
-//        Cursor cursor = db.rawQuery("SELECT * FROM trophies WHERE id IN " + trophiesEarned, null);
-
-        Log.d("test", "selectNewTrophies: cursor columns " + cursor.getColumnCount());
-
+        // add newly earned trophies to list
         ArrayList<Trophy> newTrophies = new ArrayList<>();
         try {
             while(cursor.moveToNext()) {
-                Log.d("test", "selectNewTrophies: zo vaak kom ik hier");
                 String name = cursor.getString(cursor.getColumnIndex("name"));
                 String description = cursor.getString(cursor.getColumnIndex("description"));
                 newTrophies.add(new Trophy(name, description));
@@ -150,15 +132,22 @@ public class TrophyDatabaseHelper extends SQLiteOpenHelper {
     // update trophies
     public void updateTrophies (DatabaseHelper dbExercises) {
 
+        // get database
         SQLiteDatabase dbTrophies = getWritableDatabase();
-        int counter = 0;
 
+        // initialize counter and earnedValue
+        int trophyCounter = 0;
+        int earnedValue = 1;
+
+        // get map with the keys true and false and values ArrayLists of earned trophies
         HashMap<Integer, ArrayList<Integer>> levelMap = dbExercises.selectLevel();
-        // TODO: magic number 10 weghalen
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < amountMultiplications; i++) {
+
             Boolean earned = true;
             ArrayList<Integer> levels = levelMap.get(i + 1);
-            for (int j = 0; j < 10; j++) {
+
+            // set earned to false if a level isn't 1
+            for (int j = 0; j < amountMultiplications; j++) {
                 if (levels.get(j) != 1) {
                     earned = false;
                     break;
@@ -167,26 +156,26 @@ public class TrophyDatabaseHelper extends SQLiteOpenHelper {
 
             if (earned){
 
-                // get new value of level
+                // set new value of earned
                 ContentValues values = new ContentValues();
-                values.put("earned", 1);
+                values.put("earned", earnedValue);
 
-                // update database
+                // update new value in database
                 String[] dbId = new String[] {"" + (i + 1)};
                 dbTrophies.update("trophies",values, "_id=?", dbId);
 
                 // increment trophy counter
-                counter++;
+                trophyCounter++;
             }
         }
 
         // TODO: waarom is het 11????
         // if all multiplication trophies are earned
-        if (counter == 10){
+        if (trophyCounter == amountMultiplications){
             ContentValues values = new ContentValues();
-            values.put("earned", 1);
+            values.put("earned", earnedValue);
 
-            String[] dbId = new String[] {"" + 11};
+            String[] dbId = new String[] {"" + (amountMultiplications + 1)};
             dbTrophies.update("trophies", values,"_id=?", dbId);
         }
     }
@@ -212,6 +201,7 @@ public class TrophyDatabaseHelper extends SQLiteOpenHelper {
             }
         }
 
+        // set list of earnedTrophies to HashMap
         HashMap<Boolean, ArrayList<Integer>> earnedMap = new HashMap<>();
         earnedMap.put(true, earnedNew);
         earnedMap.put(false, earnedPreviously);

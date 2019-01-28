@@ -12,7 +12,7 @@ import com.example.gebruiker.tafelsoefenen.Databases.DatabaseHelper;
 import com.example.gebruiker.tafelsoefenen.R;
 import com.example.gebruiker.tafelsoefenen.Classes.Trophy;
 import com.example.gebruiker.tafelsoefenen.Adapters.TrophyAdapter;
-import com.example.gebruiker.tafelsoefenen.TrophyDatabaseHelper;
+import com.example.gebruiker.tafelsoefenen.Databases.TrophyDatabaseHelper;
 
 public class TrophyActivity extends AppCompatActivity {
 

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.gebruiker.tafelsoefenen.Activities.ResultActivity;
 import com.example.gebruiker.tafelsoefenen.Classes.Exercise;
 import com.example.gebruiker.tafelsoefenen.R;
 
@@ -17,9 +18,11 @@ import java.util.ArrayList;
 public class ResultListSpecificAdapter extends ArrayAdapter {
 
     private ArrayList<Exercise> multiplications;
+    private Exercise currentExercise;
 
     // set the list in the adapter
-    public ResultListSpecificAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Exercise> objects) {
+    public ResultListSpecificAdapter(@NonNull Context context, int resource,
+                                     @NonNull ArrayList<Exercise> objects) {
         super(context, resource, objects);
         multiplications = objects;
     }
@@ -30,28 +33,36 @@ public class ResultListSpecificAdapter extends ArrayAdapter {
 
         // loads new items
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.result_item, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.result_item, parent,
+                    false);
         }
 
         // get and set question and answer of the items that are shown
-        Exercise current_exercise = multiplications.get(position);
+        currentExercise = multiplications.get(position);
         TextView exerciseView = ((TextView) convertView.findViewById(R.id.exercise));
-        exerciseView.setText(current_exercise.getMultiplication() + " = " + current_exercise.getAnswer());
+        exerciseView.setText(currentExercise.getMultiplication() + " = " + currentExercise.getAnswer());
 
-        // get correct color with correctness level
-        int correctness = current_exercise.getLevel();
-        if (correctness == 1) {
-            exerciseView.setTextColor(getContext().getResources().getColor(R.color.green));
-        } else if (correctness == 2) {
-            exerciseView.setTextColor(getContext().getResources().getColor(R.color.yellow));
-        } else if (correctness == 3) {
-            exerciseView.setTextColor(getContext().getResources().getColor(R.color.orange));
-        } else if (correctness == 4){
-            exerciseView.setTextColor(getContext().getResources().getColor(R.color.red));
-        } else {
-            exerciseView.setTextColor(getContext().getResources().getColor(R.color.grey));
-        }
+        // get and set color of given answer
+        getColor(exerciseView);
 
         return convertView;
+    }
+
+    // get and set color of given answer
+    public void getColor(TextView tv) {
+
+        // get correct color with correctness level
+        int correctness = currentExercise.getLevel();
+        if (correctness == 1) {
+            tv.setTextColor(getContext().getResources().getColor(R.color.green));
+        } else if (correctness == 2) {
+            tv.setTextColor(getContext().getResources().getColor(R.color.yellow));
+        } else if (correctness == 3) {
+            tv.setTextColor(getContext().getResources().getColor(R.color.orange));
+        } else if (correctness == 4){
+            tv.setTextColor(getContext().getResources().getColor(R.color.red));
+        } else {
+            tv.setTextColor(getContext().getResources().getColor(R.color.grey));
+        }
     }
 }

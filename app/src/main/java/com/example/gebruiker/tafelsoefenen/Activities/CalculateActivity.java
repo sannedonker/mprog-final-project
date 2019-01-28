@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.example.gebruiker.tafelsoefenen.Databases.DatabaseHelper;
 import com.example.gebruiker.tafelsoefenen.Classes.Exercise;
 import com.example.gebruiker.tafelsoefenen.R;
-import com.example.gebruiker.tafelsoefenen.TrophyDatabaseHelper;
+import com.example.gebruiker.tafelsoefenen.Databases.TrophyDatabaseHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;

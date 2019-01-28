@@ -12,6 +12,7 @@ import java.util.HashMap;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static DatabaseHelper instance;
+    private int amountMultiplications = 10;
 
     // get correct instance of database
     public static DatabaseHelper getInstance(Context context) {
@@ -27,25 +28,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // create database with multiplication tables (once)
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         db.execSQL("create table exercises ( _id INTEGER PRIMARY KEY AUTOINCREMENT,"
                    + "multiplication String, answer INTEGER, multiplicationTable INTEGER,"
                    + "level INTEGER)");
 
+        int defaultLevel = 0;
+
         // add multiplications in database
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10 ; j++) {
+        for (int i = 0; i < amountMultiplications; i++) {
+            for (int j = 0; j < amountMultiplications; j++) {
                 ContentValues values = new ContentValues();
 
+                // get values
                 int a = i + 1;
                 int b = j + 1;
                 String multiplication = b + " x " + a;
                 int answer = b * a;
 
+                // set values
                 values.put("multiplication", multiplication);
                 values.put("answer", answer);
                 values.put("multiplicationTable", a);
-                values.put("level", 0);
+                values.put("level", defaultLevel);
 
+                // insert values in database
                 db.insert("exercises", null, values);
             }
         }
@@ -67,17 +74,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // select needed exercises from database
     public Cursor selectExercises(ArrayList exercisesList) {
 
-        // TODO dit in een losse functie zetten want gebruik het ook in trophyDB
         // convert exercisesList to string
-        String multiplications = "(";
-        for (int i = 0; i < exercisesList.size(); i ++) {
-            if (i != exercisesList.size() - 1) {
-                multiplications = multiplications + exercisesList.get(i) + ", ";
-            } else {
-                multiplications = multiplications + exercisesList.get(i) + ")";
-            }
-        }
+        String multiplications = convertArrayListIntoString(exercisesList);
 
+        // get cursor from database
         SQLiteDatabase db = getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM exercises WHERE multiplicationTable IN "
                 + multiplications, null);
@@ -96,8 +96,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // update database
         String[] rowId = new String[] {"" + id};
         db.update("exercises",values, "_id=?", rowId);
-
-
     }
 
     // reset all levels
@@ -106,17 +104,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("UPDATE exercises SET level = 0");
     }
 
-    // select all levels
+    // select all levels, put them in a hashmap with key the multiplication
     public HashMap selectLevel() {
 
-        // select database and initialize hashmap
+        // get database and initialize hashmap
         SQLiteDatabase db = getWritableDatabase();
         HashMap<Integer, ArrayList<Integer>> levelMap = new HashMap<>();
 
         // select levels per multiplication
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < amountMultiplications; i++) {
+
+            // get cursor
             Cursor cursor = db.rawQuery("SELECT level FROM exercises WHERE multiplicationTable = "
                                         + (i + 1), null);
+
+            // make list with all levels and add list to hashmap
             ArrayList<Integer> levels = new ArrayList<>();
             try {
                 while (cursor.moveToNext()) {
@@ -129,6 +131,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         return levelMap;
+    }
+
+    // convert ArrayList into a String
+    public static String convertArrayListIntoString (ArrayList inputList){
+
+        // convert exercisesList to string
+        String resultString = "(";
+        for (int i = 0; i < inputList.size(); i ++) {
+            if (i != inputList.size() - 1) {
+                resultString = resultString + inputList.get(i) + ", ";
+            } else {
+                resultString = resultString + inputList.get(i) + ")";
+            }
+        }
+
+        return resultString;
     }
 
 }

@@ -38,10 +38,6 @@ public class Exercise implements Serializable {
         return answer;
     }
 
-    public int getMultiplicationTable() {
-        return multiplicationTable;
-    }
-
     public int getLevel() {
         return level;
     }
@@ -50,19 +46,4 @@ public class Exercise implements Serializable {
         return id;
     }
 
-    public void setMultiplication(String multiplication) {
-        this.multiplication = multiplication;
-    }
-
-    public void setAnswer(int answer) {
-        this.answer = answer;
-    }
-
-    public void setMultiplicationTable(int multiplicationTable) {
-        this.multiplicationTable = multiplicationTable;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
 }

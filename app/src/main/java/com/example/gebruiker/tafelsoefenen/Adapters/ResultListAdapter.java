@@ -18,9 +18,7 @@ public class ResultListAdapter extends ArrayAdapter {
 
     private ArrayList<Exercise> multiplications;
     private ArrayList<String> givenAnswers;
-
-    TextView answerGivenView;
-    Exercise currentExercise;
+    private Exercise currentExercise;
 
     // set the lists in the adapter
     public ResultListAdapter(@NonNull Context context, int resource,
@@ -50,30 +48,30 @@ public class ResultListAdapter extends ArrayAdapter {
         answerView.setText(test);
 
         // set given answer
-        answerGivenView = ((TextView) convertView.findViewById(R.id.answer_given_tv));
+        TextView answerGivenView = ((TextView) convertView.findViewById(R.id.answer_given_tv));
         answerGivenView.setText(givenAnswers.get(position));
 
         // get and set color of given answer
-        getColor();
+        getColor(answerGivenView);
 
         return convertView;
     }
 
     // get and set color of given answer
-    public void getColor() {
+    public void getColor(TextView tv) {
 
         // get correct color with correctness level
         int correctness = currentExercise.getLevel();
         if (correctness == 1) {
-            answerGivenView.setTextColor(getContext().getResources().getColor(R.color.green));
+            tv.setTextColor(getContext().getResources().getColor(R.color.green));
         } else if (correctness == 2) {
-            answerGivenView.setTextColor(getContext().getResources().getColor(R.color.yellow));
+            tv.setTextColor(getContext().getResources().getColor(R.color.yellow));
         } else if (correctness == 3) {
-            answerGivenView.setTextColor(getContext().getResources().getColor(R.color.orange));
+            tv.setTextColor(getContext().getResources().getColor(R.color.orange));
         } else if (correctness == 4){
-            answerGivenView.setTextColor(getContext().getResources().getColor(R.color.red));
+            tv.setTextColor(getContext().getResources().getColor(R.color.red));
         } else {
-            answerGivenView.setTextColor(getContext().getResources().getColor(R.color.grey));
+            tv.setTextColor(getContext().getResources().getColor(R.color.grey));
         }
     }
 }

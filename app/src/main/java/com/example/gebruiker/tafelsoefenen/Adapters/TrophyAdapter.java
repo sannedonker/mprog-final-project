@@ -2,7 +2,6 @@ package com.example.gebruiker.tafelsoefenen.Adapters;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ResourceCursorAdapter;
@@ -25,9 +24,10 @@ public class TrophyAdapter extends ResourceCursorAdapter {
         int lock = context.getResources().getIdentifier("lock","drawable",
                                                         context.getPackageName());
 
+        // TODO: ik gebruik maar 1 plaatje!
         // set trophy if trophy is earned
-        if (cursor.getInt(4) == 1) {
-            trophy.setImageResource(cursor.getInt(3));
+        if (cursor.getInt(cursor.getColumnIndex("earned")) == 1) {
+            trophy.setImageResource(cursor.getInt(cursor.getColumnIndex("drawableId")));
         } else {
             trophy.setImageResource(lock);
         }

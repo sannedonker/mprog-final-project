@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import com.example.gebruiker.tafelsoefenen.Databases.DatabaseHelper;
 import com.example.gebruiker.tafelsoefenen.R;
-import com.example.gebruiker.tafelsoefenen.TrophyDatabaseHelper;
+import com.example.gebruiker.tafelsoefenen.Databases.TrophyDatabaseHelper;
 
 public class ResetActivity extends AppCompatActivity {
 
