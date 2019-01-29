@@ -29,6 +29,7 @@ public class TrophyDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+
     // create database with multiplication tables (once)
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -66,6 +67,7 @@ public class TrophyDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+
     // update database
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -73,11 +75,13 @@ public class TrophyDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+
     // constructor
     public TrophyDatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
         thisContext = context;
     }
+
 
     // select all info from database
     public Cursor selectAll() {
@@ -85,6 +89,7 @@ public class TrophyDatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM trophies", null);
         return cursor;
     }
+
 
     // select earned column
     public ArrayList<Integer> selectEarned() {
@@ -102,6 +107,7 @@ public class TrophyDatabaseHelper extends SQLiteOpenHelper {
 
         return earned;
     }
+
 
     // select newly earned trophies
     public ArrayList<Trophy> selectNewTrophies(ArrayList<Integer> trophyIds){
@@ -130,6 +136,7 @@ public class TrophyDatabaseHelper extends SQLiteOpenHelper {
         return newTrophies;
     }
 
+
     // update trophies
     public void updateTrophies (DatabaseHelper dbExercises) {
 
@@ -157,6 +164,8 @@ public class TrophyDatabaseHelper extends SQLiteOpenHelper {
 
             if (earned){
 
+//                updateTrophy(dbTrophies, earnedValue, i);
+
                 // set new value of earned
                 ContentValues values = new ContentValues();
                 values.put("earned", earnedValue);
@@ -170,9 +179,11 @@ public class TrophyDatabaseHelper extends SQLiteOpenHelper {
             }
         }
 
-        // TODO: waarom is het 11????
         // if all multiplication trophies are earned
         if (trophyCounter == amountMultiplications){
+
+//            updateTrophy(dbTrophies, earnedValue, amountMultiplications);
+
             ContentValues values = new ContentValues();
             values.put("earned", earnedValue);
 
@@ -181,11 +192,26 @@ public class TrophyDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+
+    // update a specific trophy in db
+    public void updateTrophy(SQLiteDatabase db, int multiplication, int earnedValue) {
+
+        // set new value of earned
+        ContentValues values = new ContentValues();
+        values.put("earned", earnedValue);
+
+        // update new value in database
+        String[] dbId = new String[] {"" + (multiplication + 1)};
+        db.update("trophies", values,"_id=?", dbId);
+    }
+
+
     // reset all earnedTrophies
     public void resetTrophies() {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("UPDATE trophies SET earned = 0");
     }
+
 
     // check if new Trophies are earned
     public HashMap<Boolean, ArrayList<Integer>> checkTrophies(ArrayList<Integer> previouslyEarned) {

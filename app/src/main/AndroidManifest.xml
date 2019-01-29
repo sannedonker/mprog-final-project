@@ -9,8 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.TrophyEarnedActivity" />
-        <activity android:name=".Activities.MainActivity">
+        <activity android:name=".Activities.TrophyEarnedActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activities.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,16 +21,26 @@
         </activity>
         <activity
             android:name=".Activities.CalculateActivity"
-            android:windowSoftInputMode="stateVisible" />
-        <activity android:name=".Activities.SpecificActivity" />
-        <activity android:name=".Activities.ResetActivity" />
-        <activity android:name=".Activities.InfoActivity" />
-        <activity android:name=".Activities.ResultActivity" />
-        <activity android:name=".Activities.ResultListActivity" />
-        <activity android:name=".Activities.BeginActivity" />
-        <activity android:name=".Activities.ResultListSpecificActivity" />
-        <activity android:name=".Activities.TrophyActivity" />
-        <activity android:name=".Activities.TrophySpecificActivity" />
+            android:windowSoftInputMode="stateVisible"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activities.SpecificActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activities.ResetActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activities.InfoActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activities.ResultActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activities.ResultListActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activities.BeginActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activities.ResultListSpecificActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activities.TrophyActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activities.TrophySpecificActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
