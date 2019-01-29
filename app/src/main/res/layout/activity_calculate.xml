@@ -29,28 +29,11 @@
         android:layout_marginBottom="420dp"
         android:digits="1234567890"
         android:ems="10"
-        android:inputType="phone"
         android:imeOptions="actionSend"
+        android:inputType="phone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <!--<Button-->
-        <!--android:id="@+id/submitButton"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginStart="8dp"-->
-        <!--android:layout_marginTop="8dp"-->
-        <!--android:layout_marginEnd="8dp"-->
-        <!--android:layout_marginBottom="8dp"-->
-        <!--android:onClick="submitClick"-->
-        <!--android:text="OK"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintHorizontal_bias="1.0"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/answerField"-->
-        <!--app:layout_constraintVertical_bias="0.008" />-->
 
     <ProgressBar
         android:id="@+id/progressBar"

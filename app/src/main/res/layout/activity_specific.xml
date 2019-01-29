@@ -23,15 +23,19 @@
             android:id="@+id/times1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/buttonColor"
+            android:onClick="multiplicationSelected"
             android:text="1"
-            android:onClick="multiplicationSelected"/>
+            android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/times2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2"
+            android:backgroundTint="@color/buttonColor"
             android:onClick="multiplicationSelected"
+            android:text="2"
+            android:textColor="@android:color/white"
             app:layout_column="1"
             app:layout_row="0" />
 
@@ -39,8 +43,10 @@
             android:id="@+id/times3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="3"
+            android:backgroundTint="@color/buttonColor"
             android:onClick="multiplicationSelected"
+            android:text="3"
+            android:textColor="@android:color/white"
             app:layout_column="2"
             app:layout_row="0" />
 
@@ -48,8 +54,10 @@
             android:id="@+id/times4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="4"
+            android:backgroundTint="@color/buttonColor"
             android:onClick="multiplicationSelected"
+            android:text="4"
+            android:textColor="@android:color/white"
             app:layout_column="0"
             app:layout_row="1" />
 
@@ -57,8 +65,10 @@
             android:id="@+id/times5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5"
+            android:backgroundTint="@color/buttonColor"
             android:onClick="multiplicationSelected"
+            android:text="5"
+            android:textColor="@android:color/white"
             app:layout_column="1"
             app:layout_row="1" />
 
@@ -66,8 +76,10 @@
             android:id="@+id/times6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="6"
+            android:backgroundTint="@color/buttonColor"
             android:onClick="multiplicationSelected"
+            android:text="6"
+            android:textColor="@android:color/white"
             app:layout_column="2"
             app:layout_row="1" />
 
@@ -75,8 +87,10 @@
             android:id="@+id/times7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="7"
+            android:backgroundTint="@color/buttonColor"
             android:onClick="multiplicationSelected"
+            android:text="7"
+            android:textColor="@android:color/white"
             app:layout_column="0"
             app:layout_row="2" />
 
@@ -84,8 +98,10 @@
             android:id="@+id/times8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="8"
+            android:backgroundTint="@color/buttonColor"
             android:onClick="multiplicationSelected"
+            android:text="8"
+            android:textColor="@android:color/white"
             app:layout_column="1"
             app:layout_row="2" />
 
@@ -93,8 +109,10 @@
             android:id="@+id/times9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="9"
+            android:backgroundTint="@color/buttonColor"
             android:onClick="multiplicationSelected"
+            android:text="9"
+            android:textColor="@android:color/white"
             app:layout_column="2"
             app:layout_row="2" />
 
@@ -102,8 +120,10 @@
             android:id="@+id/times10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="10"
+            android:backgroundTint="@color/buttonColor"
             android:onClick="multiplicationSelected"
+            android:text="10"
+            android:textColor="@android:color/white"
             app:layout_column="1"
             app:layout_row="3" />
     </android.support.v7.widget.GridLayout>
@@ -115,8 +135,10 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="67dp"
         android:layout_marginEnd="8dp"
-        android:text="Start oefenen"
+        android:backgroundTint="@color/buttonColor"
         android:onClick="practiceClick"
+        android:text="Start oefenen"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

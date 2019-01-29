@@ -46,6 +46,7 @@ public class TrophyDatabaseHelper extends SQLiteOpenHelper {
             descriptions.add("Je hebt alle somen van de tafel van " + (i + 1) + " gememoriseerd!");
         }
         descriptions.add("Je hebt alle sommen van alle tafels gememoriseerd!");
+        names.add("Alle tafels");
 
         int drawableId = thisContext.getResources().getIdentifier("trophy_1",
                 "drawable", thisContext.getPackageName());

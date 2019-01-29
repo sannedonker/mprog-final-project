@@ -35,12 +35,12 @@ public class SpecificActivity extends AppCompatActivity {
                 if (practiceList.contains(i + 1)) {
                     practiceList.remove(Integer.valueOf(1 + i));
                     findViewById(buttons[i]).setBackgroundTintList(ColorStateList.valueOf(
-                            getResources().getColor(R.color.buttongrey)));
+                            getResources().getColor(R.color.colorPrimary)));
                 }
                 else {
                     practiceList.add(i + 1);
                     findViewById(buttons[i]).setBackgroundTintList(ColorStateList.valueOf(
-                            getResources().getColor(R.color.grey)));
+                            getResources().getColor(R.color.colorAccent)));
                 }
             }
         }
