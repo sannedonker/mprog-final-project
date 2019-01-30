@@ -5,26 +5,19 @@ import java.io.Serializable;
 public class Trophy implements Serializable {
 
     private String name, description;
-    private int id, drawableId, earned;
+    private int drawableId, earned;
 
-
-    public Trophy(String name, String description, int id, int drawableId, int earned) {
+    public Trophy(String name, String description, int earned, int drawableId) {
         this.name = name;
         this.description = description;
-        this.id = id;
+        this.earned = earned;
         this.drawableId = drawableId;
-        this.earned = earned;
     }
 
-    public Trophy(String name, String description, int earned) {
+    public Trophy(String name, String description, int drawableId) {
         this.name = name;
         this.description = description;
-        this.earned = earned;
-    }
-
-    public Trophy(String name, String description) {
-        this.name = name;
-        this.description = description;
+        this.drawableId = drawableId;
     }
 
     public String getName() {
@@ -37,5 +30,9 @@ public class Trophy implements Serializable {
 
     public int getEarned() {
         return earned;
+    }
+
+    public int getDrawableId() {
+        return drawableId;
     }
 }

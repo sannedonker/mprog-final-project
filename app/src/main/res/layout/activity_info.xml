@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:text="Je resultaten zijn te zien in 'resultaten' wanneer er op een piechart wordt geklikt zijn alle sommen van de geklikte tafel met bijbehorende resultaten te zien. Verder kan je trofeeën verdienen! Deze zijn te vinden bij 'trofeeën' ook hier kan op geklikt worden om de beschrijving van de trofee te zien. Als je daar goed zoekt wordt je beloond  confetti ;)"
+            android:text="Je resultaten zijn te zien in 'resultaten' wanneer er op een piechart wordt geklikt zijn alle sommen van de geklikte tafel met bijbehorende resultaten te zien. Verder kan je trofeeën verdienen! Deze zijn te vinden bij 'trofeeën' ook hier kan op geklikt worden om de beschrijving van de trofee te zien. Als je daar goed zoekt wordt je beloond met confetti ;)"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

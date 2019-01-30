@@ -15,7 +15,6 @@ public class TrophyDatabaseHelper extends SQLiteOpenHelper {
 
     private Context thisContext;
     private static TrophyDatabaseHelper instance;
-
     private int amountMultiplications = 10;
 
     // get correct instance of database
@@ -37,20 +36,29 @@ public class TrophyDatabaseHelper extends SQLiteOpenHelper {
                 + "name String, description String, drawableId INTEGER, earned INTEGER)");
 
 
-        // TODO: meer plaatjes maken!!!!
-
-        // set values
+        // set values for trophies 1 to amountMultiplications
         ArrayList<String> names = new ArrayList<>();
         ArrayList<String> descriptions = new ArrayList<>();
+        ArrayList<String> images = new ArrayList<>();
         for (int i = 0; i < amountMultiplications; i++) {
             names.add("Tafel van " + (i + 1));
-            descriptions.add("Je hebt alle somen van de tafel van " + (i + 1) + " gememoriseerd!");
+            descriptions.add("Je hebt alle sommen van de tafel van " + (i + 1) + " gememoriseerd!");
+            images.add("trophy_" + (i + 1));
         }
+
+        // set values for 'all' trophy
         descriptions.add("Je hebt alle sommen van alle tafels gememoriseerd!");
         names.add("Alle tafels");
+        images.add("trophy_all");
 
-        int drawableId = thisContext.getResources().getIdentifier("trophy_1",
-                "drawable", thisContext.getPackageName());
+        // set drawableIds
+        ArrayList<Integer> drawableIds = new ArrayList<>();
+        for (int i = 0; i< amountMultiplications + 1; i++) {
+            int drawableId = thisContext.getResources().getIdentifier(images.get(i),
+                    "drawable", thisContext.getPackageName());
+            drawableIds.add(drawableId);
+
+        }
 
         int defaultEarned = 0;
 
@@ -60,7 +68,7 @@ public class TrophyDatabaseHelper extends SQLiteOpenHelper {
 
             values.put("name", names.get(i));
             values.put("description", descriptions.get(i));
-            values.put("drawableId", drawableId);
+            values.put("drawableId", drawableIds.get(i));
             values.put("earned", defaultEarned);
 
             db.insert("trophies", null, values);
@@ -127,7 +135,8 @@ public class TrophyDatabaseHelper extends SQLiteOpenHelper {
             while(cursor.moveToNext()) {
                 String name = cursor.getString(cursor.getColumnIndex("name"));
                 String description = cursor.getString(cursor.getColumnIndex("description"));
-                newTrophies.add(new Trophy(name, description));
+                int drawableId = cursor.getInt(cursor.getColumnIndex("drawableId"));
+                newTrophies.add(new Trophy(name, description, drawableId));
             }
         } finally {
             cursor.close();
@@ -162,9 +171,8 @@ public class TrophyDatabaseHelper extends SQLiteOpenHelper {
                 }
             }
 
+            // if a trophy is earned update database
             if (earned){
-
-//                updateTrophy(dbTrophies, earnedValue, i);
 
                 // set new value of earned
                 ContentValues values = new ContentValues();
@@ -182,27 +190,12 @@ public class TrophyDatabaseHelper extends SQLiteOpenHelper {
         // if all multiplication trophies are earned
         if (trophyCounter == amountMultiplications){
 
-//            updateTrophy(dbTrophies, earnedValue, amountMultiplications);
-
             ContentValues values = new ContentValues();
             values.put("earned", earnedValue);
 
             String[] dbId = new String[] {"" + (amountMultiplications + 1)};
             dbTrophies.update("trophies", values,"_id=?", dbId);
         }
-    }
-
-
-    // update a specific trophy in db
-    public void updateTrophy(SQLiteDatabase db, int multiplication, int earnedValue) {
-
-        // set new value of earned
-        ContentValues values = new ContentValues();
-        values.put("earned", earnedValue);
-
-        // update new value in database
-        String[] dbId = new String[] {"" + (multiplication + 1)};
-        db.update("trophies", values,"_id=?", dbId);
     }
 
 

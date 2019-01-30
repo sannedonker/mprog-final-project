@@ -16,8 +16,6 @@ import lecho.lib.hellocharts.model.PieChartData;
 import lecho.lib.hellocharts.model.SliceValue;
 import lecho.lib.hellocharts.view.PieChartView;
 
-// TODO: VERWIJZEN NAAR DEZE LINK: https://stackoverflow.com/questions/19466757/hashmap-to-listview/19467717#19467717
-
 public class PieChartAdapter extends BaseAdapter {
 
     private final ArrayList levels = new ArrayList();
@@ -33,10 +31,12 @@ public class PieChartAdapter extends BaseAdapter {
         levels.addAll(levelMap.entrySet());
     }
 
+
     @Override
     public int getCount() {
         return levels.size();
     }
+
 
     @Override
     public Map.Entry<Integer, ArrayList<Integer>> getItem(int position) {
@@ -49,6 +49,7 @@ public class PieChartAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return 0;
     }
+
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -75,6 +76,7 @@ public class PieChartAdapter extends BaseAdapter {
         return result;
     }
 
+
     // count how much of every color is represented in the pieChart
     public void countColors() {
 
@@ -100,6 +102,7 @@ public class PieChartAdapter extends BaseAdapter {
                 red++; }
         }
     }
+
 
     // set pieChartData
     public void makePieChart(ViewGroup parent, View result) {

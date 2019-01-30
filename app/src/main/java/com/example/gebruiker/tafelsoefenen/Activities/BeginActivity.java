@@ -18,17 +18,8 @@ public class BeginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_begin);
     }
 
+
     public void beginLevelClick(View view) {
-
-        // create a list with (amount of exercises, boolean, multiplications that need to be practiced)
-//        ArrayList<Integer> multiplications = new ArrayList<>();
-//        multiplications.add(100);
-//        multiplications.add(0);
-//        for (int i = 0; i < 10; i ++) {
-//            multiplications.add(i + 1);
-//        }
-
-        //TODO dit is heel erg hardcoden (magic numbers) manier bedenken om te vermijden
 
         // create a list with (amount of exercises, booleans, multiplications that need to be practiced)
         ArrayList<Integer> exercisesList = new ArrayList<>();

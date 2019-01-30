@@ -30,6 +30,7 @@ public class ResultListActivity extends AppCompatActivity {
         lv.setAdapter(adapter);
     }
 
+
     // makes sure that when pressed back the user goes to the correct screen
     @Override
     public void onBackPressed()

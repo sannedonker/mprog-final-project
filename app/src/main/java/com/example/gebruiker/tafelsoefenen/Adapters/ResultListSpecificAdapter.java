@@ -27,6 +27,7 @@ public class ResultListSpecificAdapter extends ArrayAdapter {
         multiplications = objects;
     }
 
+
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -47,6 +48,7 @@ public class ResultListSpecificAdapter extends ArrayAdapter {
 
         return convertView;
     }
+
 
     // get and set color of given answer
     public void getColor(TextView tv) {

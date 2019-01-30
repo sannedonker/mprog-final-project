@@ -18,6 +18,7 @@ public class ResetActivity extends AppCompatActivity {
         setContentView(R.layout.activity_reset);
     }
 
+
     // reset database
     public void doReset(View view) {
 
@@ -36,6 +37,7 @@ public class ResetActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
+
 
     // return to MainActivity
     public void dontReset(View view) {

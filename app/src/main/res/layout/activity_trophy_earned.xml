@@ -31,7 +31,7 @@
         android:layout_marginEnd="8dp"
         android:background="@android:color/white"
         android:onClick="makeConfetti"
-        android:src="@drawable/trophy_1"
+        android:src="@drawable/trophy_2"
         app:layout_constraintBottom_toTopOf="@+id/name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -18,11 +18,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+
     // go to BeginActivity
     public void beginClick(View view) {
         Intent intent = new Intent(MainActivity.this, BeginActivity.class);
         startActivity(intent);
     }
+
 
     // go to CalculateActivity
     public void calculateClick(View view) {
@@ -34,15 +36,18 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
     // go to SpecificActivity
     public void specificClick(View view) {
         Intent intent = new Intent(MainActivity.this, SpecificActivity.class);
         startActivity(intent);    }
 
+
     // go to ResultActivity
     public void resultClick(View view) {
         Intent intent = new Intent(MainActivity.this, ResultActivity.class);
         startActivity(intent);    }
+
 
     // go to ResetActivity
     public void resetClick(View view) {
@@ -50,10 +55,12 @@ public class MainActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);    }
 
+
     // go to InfoActivity
     public void infoClick(View view) {
         Intent intent = new Intent(MainActivity.this, InfoActivity.class);
         startActivity(intent);    }
+
 
     // go to TrophyActivity
     public void trophyClick(View view) {

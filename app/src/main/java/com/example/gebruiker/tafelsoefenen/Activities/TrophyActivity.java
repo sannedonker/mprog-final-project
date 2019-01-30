@@ -36,6 +36,7 @@ public class TrophyActivity extends AppCompatActivity {
 
     }
 
+
     // when item clicked go to TrophySpecificActivity
     private class OnItemClickListener implements AdapterView.OnItemClickListener {
         @Override
@@ -46,7 +47,8 @@ public class TrophyActivity extends AppCompatActivity {
             String name = cursor.getString(cursor.getColumnIndex("name"));
             String description = cursor.getString(cursor.getColumnIndex("description"));
             int earned = cursor.getInt(cursor.getColumnIndex("earned"));
-            Trophy trophy = new Trophy(name, description, earned);
+            int drawableId = cursor.getInt(cursor.getColumnIndex("drawableId"));
+            Trophy trophy = new Trophy(name, description, earned, drawableId);
 
             // send user and trophy to TrophySpecificActivity
             Intent intent = new Intent(TrophyActivity.this, TrophySpecificActivity.class);

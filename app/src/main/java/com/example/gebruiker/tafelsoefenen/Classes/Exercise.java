@@ -7,15 +7,7 @@ import java.io.Serializable;
 public class Exercise implements Serializable {
 
     private String multiplication;
-    private int answer, multiplicationTable, level, id;
-
-    public Exercise(String multiplication, int answer, int multiplicationTable, int level, int id) {
-        this.multiplication = multiplication;
-        this.answer = answer;
-        this.multiplicationTable = multiplicationTable;
-        this.level = level;
-        this.id = id;
-    }
+    private int answer, level, id;
 
     public Exercise(String multiplication, int answer, int level, int id) {
         this.multiplication = multiplication;

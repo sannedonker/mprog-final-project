@@ -31,14 +31,14 @@ public class TrophySpecificActivity extends AppCompatActivity {
         // if trophy is earned show trophy image and description, else disable confetti option
         ImageButton image = findViewById(R.id.trophy_image);
         if (trophy.getEarned() == 1) {
-            image.setImageResource(getResources().getIdentifier("trophy_1",
-                    "drawable", getPackageName()));
+            image.setImageResource(trophy.getDrawableId());
             TextView description = findViewById(R.id.description);
             description.setText(trophy.getDescription());
         } else {
             image.setClickable(false);
         }
     }
+
 
     // when imagebutton is clicked a stream of confetti falls down from top of screen
     public void makeConfetti(View view) {

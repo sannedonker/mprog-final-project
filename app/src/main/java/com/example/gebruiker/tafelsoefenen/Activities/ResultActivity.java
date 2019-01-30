@@ -37,6 +37,7 @@ public class ResultActivity extends AppCompatActivity {
 
     }
 
+
     // when piechart clicked go to ResultListActivity
     private class OnItemClickListener implements AdapterView.OnItemClickListener {
         @Override
@@ -62,6 +63,7 @@ public class ResultActivity extends AppCompatActivity {
 
         }
     }
+
 
     // get results from cursor
     public void getResults(Cursor cursor) {

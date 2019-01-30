@@ -25,6 +25,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+
     // create database with multiplication tables (once)
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -56,8 +57,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 db.insert("exercises", null, values);
             }
         }
-
     }
+
 
     // update database
     @Override
@@ -66,10 +67,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+
     // constructor
     public DatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
+
 
     // select needed exercises from database
     public Cursor selectExercises(ArrayList exercisesList) {
@@ -85,6 +88,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+
     // update level on id
     public void updateLevel(int id, int newLevel) {
         SQLiteDatabase db = getWritableDatabase();
@@ -98,11 +102,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.update("exercises",values, "_id=?", rowId);
     }
 
+
     // reset all levels
     public void resetLevel() {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("UPDATE exercises SET level = 0");
     }
+
 
     // select all levels, put them in a hashmap with key the multiplication
     public HashMap selectLevel() {
@@ -133,6 +139,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return levelMap;
     }
 
+
     // convert ArrayList into a String
     public static String convertArrayListIntoString (ArrayList inputList){
 
@@ -148,5 +155,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return resultString;
     }
-
 }

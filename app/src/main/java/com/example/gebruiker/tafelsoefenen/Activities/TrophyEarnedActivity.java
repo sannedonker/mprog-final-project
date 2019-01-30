@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.gebruiker.tafelsoefenen.Classes.Exercise;
@@ -37,12 +39,15 @@ public class TrophyEarnedActivity extends AppCompatActivity {
         TrophyDatabaseHelper db = TrophyDatabaseHelper.getInstance(getApplicationContext());
         newTrophies = db.selectNewTrophies(trophiesEarned);
 
-        // set name of trophy
+        // set name and image of trophy
         TextView name = findViewById(R.id.name);
         name.setText(newTrophies.get(0).getName());
+        ImageView image = findViewById(R.id.trophy_image);
+        image.setImageResource(newTrophies.get(0).getDrawableId());
 
         newTrophies.remove(0);
     }
+
 
     // shows user a new trophy or sends it to ResultListActivity
     public void newTrophyClick(View view) {
@@ -51,9 +56,11 @@ public class TrophyEarnedActivity extends AppCompatActivity {
         if (newTrophies.size() >= 1) {
             Trophy trophy = newTrophies.get(0);
 
-            // set name of trophy
+            // set name and image of trophy
             TextView name = findViewById(R.id.name);
             name.setText(trophy.getName());
+            ImageView image = findViewById(R.id.trophy_image);
+            image.setImageResource(trophy.getDrawableId());
 
             newTrophies.remove(0);
         }
@@ -65,8 +72,8 @@ public class TrophyEarnedActivity extends AppCompatActivity {
             intent.putExtra("givenAnswers", givenAnswers);
             startActivity(intent);
         }
-
     }
+
 
     // when imagebutton is clicked a stream of confetti falls down from top of screen
     public void makeConfetti(View view) {

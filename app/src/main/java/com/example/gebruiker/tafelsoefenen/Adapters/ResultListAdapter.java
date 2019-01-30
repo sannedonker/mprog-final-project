@@ -29,6 +29,7 @@ public class ResultListAdapter extends ArrayAdapter {
         givenAnswers = answers;
     }
 
+
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -56,6 +57,7 @@ public class ResultListAdapter extends ArrayAdapter {
 
         return convertView;
     }
+
 
     // get and set color of given answer
     public void getColor(TextView tv) {

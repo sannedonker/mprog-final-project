@@ -26,6 +26,7 @@ public class SpecificActivity extends AppCompatActivity {
         setContentView(R.layout.activity_specific);
     }
 
+
     // add or remove multiplication to practice list and change color of clikced button
     public void multiplicationSelected(View view) {
 

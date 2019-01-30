@@ -21,15 +21,10 @@ import java.util.HashMap;
 
 public class CalculateActivity extends AppCompatActivity {
 
-    // TODO: scope variabelen checken
-    // TODO: meer functies maken (nu alles in onCreate)
-
     DatabaseHelper db;
-
     Intent intent;
 
     ArrayList<Integer> previouslyEarned = new ArrayList<>();
-
     ArrayList<Exercise> exercises = new ArrayList<>();
 
     ArrayList<String> multiplications = new ArrayList<>();
@@ -49,10 +44,7 @@ public class CalculateActivity extends AppCompatActivity {
     private int counter = 0;
     private int levelBoolean;
 
-    // TODO: waarshcijnlijk gaat dit in een kleinere scope kunnen
     int greenLevel = 1;
-    int yellowLevel = 2;
-    int orangeLevel = 3;
     int redLevel = 4;
 
     @Override
@@ -105,8 +97,6 @@ public class CalculateActivity extends AppCompatActivity {
 
         // submit given answer to db
         submitAnswer();
-
-        // TODO: hiernaar refereren: https://developer.android.com/training/keyboard-input/style#java
     }
 
 
@@ -168,7 +158,7 @@ public class CalculateActivity extends AppCompatActivity {
     // checks if answer is given and submits given answer
     public void submitAnswer() {
 
-        // TODO VERWIJZEN NAAR DE LINK!!!! + EVT EXTRA COMMENT OVER DE HELE LISTENER??
+        // when clicked on send on the keyboard
         EditText editText = (EditText) findViewById(R.id.answerField);
         editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -212,11 +202,14 @@ public class CalculateActivity extends AppCompatActivity {
         });
     }
 
+
     // determine the correctness of the answer
     public int determineCorrectness(int answer) {
 
         // check if answer is correct
         int correctness;
+        int yellowLevel = 2;
+        int orangeLevel = 3;
         if (answer == answers.get(counter)) {
 
             // determine level on answerTime

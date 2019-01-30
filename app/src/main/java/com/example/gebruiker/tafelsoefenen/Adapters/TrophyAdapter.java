@@ -16,6 +16,7 @@ public class TrophyAdapter extends ResourceCursorAdapter {
         super(context, R.layout.trophy_item, cursor);
     }
 
+
     // set info of trophy to the bindview
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
@@ -24,8 +25,7 @@ public class TrophyAdapter extends ResourceCursorAdapter {
         int lock = context.getResources().getIdentifier("lock","drawable",
                                                         context.getPackageName());
 
-        // TODO: ik gebruik maar 1 plaatje!
-        // set trophy if trophy is earned
+        // set correct trophy if trophy is earned
         if (cursor.getInt(cursor.getColumnIndex("earned")) == 1) {
             trophy.setImageResource(cursor.getInt(cursor.getColumnIndex("drawableId")));
         } else {

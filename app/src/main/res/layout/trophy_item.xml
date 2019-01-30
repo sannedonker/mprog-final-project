@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.733"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/trophy_1"
+        app:srcCompat="@drawable/trophy_2"
         tools:layout_editor_absoluteY="79dp" />
 
     <TextView
