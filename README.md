@@ -23,8 +23,8 @@ TODO
 
 ## Referenties
 Er wordt gebruik gemaakt van de hello-charts library en de confetti library.
-- hello-charts: https://github.com/lecho/hellocharts-android
-- confetti: https://github.com/jinatonic/confetti
+- hello-charts: https://github.com/lecho/hellocharts-android, Apache License
+- confetti: https://github.com/jinatonic/confetti, Apache License
 
 Ook zijn enkele stackoverflow pagina's essentieel geweest bij de ontwikkeling van de app:
 - toetsenbord input tijdens het rekenen: https://developer.android.com/training/keyboard-input/style#java
