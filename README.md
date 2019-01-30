@@ -1,5 +1,9 @@
-# Eindproject -- tafel oefen app
-Deze app is gemaakt door Sanne Donker als eindproject voor de minor programmeren aan de Universiteit van Amsterdam.
+# Eindproject -- tafels oefenen
+Minor programmeren UvA  
+Eindproject van Native App Studio  
+Sanne Donker, 10780416  
+s.a.m.donker@hotmail.com  
+
 [![BCH compliance](https://bettercodehub.com/edge/badge/sannedonker/mprog-final-project?branch=master)](https://bettercodehub.com/)
 
 ## Concept
