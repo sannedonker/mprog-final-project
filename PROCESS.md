@@ -1,14 +1,12 @@
 # Dag 1
-Vandaag heb ik mijn definitieve voorstel gemaakt van de tafel oefen app.
-
-(todo: plaatjes toevoegen)
+Vandaag heb ik mijn definitieve voorstel gemaakt van de tafel oefen app. Dit voorstel is te zien in PROPOSAL.md
 
 # Dag 2
-Vandaag heb ik het design document gemaakt. Wat ik hierbij realiseerde was:
+Vandaag heb ik het designdocument gemaakt. Wat ik hierbij realiseerde was:
 - ik ga een SQL database gebruiken in plaats van lijsten met daarin objecten
 - ik ga bij de resultGrid ipv de knoppen te kleuren van de knoppen pie charts maken waarin je kan zien hoe goed die tafel beheersd is.
 
-(todo: plaatjes toevoegen)
+Het designdocument is te vinden in DESIGN.md
 
 # Dag 3
 Ik vond het moeilijk om te bedenken hoe ik de sommen wil husselen en hoe vaak ik ze wil laten voorkomen als nog niet alle sommen al een keer gemaakt zijn. Daarom wil ik een extra optie toevoegen. De eerste keer als je de app gebruikt moet je een 'start level' bepalen. Dit houdt in dat je alle 100 sommen moet maken.
@@ -31,8 +29,6 @@ Voor vandaag had ik een aantal doelen voor mijzelf gezet:
 
 Deze doelen zijn allemaal gehaald. Wel heb ik bedacht dat ik eventueel de invoer methode wil veranderen in de calculate activity. Op het moment werkt het namelijk wel maar is het gebruik gemak nog niet heel hoog. Verder wil ik eventueel het laten zien van de resultaten in een lijst na het maken van de sommen veranderen. Nu wordt gezien op welk correctness level de vraag is beantwoord (groen, geel, oranje of rood). Echter als het antwoord fout is wordt het goede antwoord laten zien. Omdat dit verwarrend is, wil ik dit misschien veranderen.
 
-(todo: plaatjes toevoegen (calculate activity & resultList activity).
-
 Verder ben ik begonnen aan het implementeren van de pie charts. Hier loop ik wel nog tegen een probleem aan van het gebruiken van de hellocharts library. Hopelijk kan ik de implementatie hiervan morgen met hulp oplossen.
 
 # Dag 7
@@ -53,17 +49,17 @@ Tussendoor is er gewerkt aan een aantal kleine todo's zoals:
 # Dag 10
 Het is gelukt om de data in de pie charts te krijgen! Dit bleek makkelijker dan verwacht, er hoefde slechts een functie op een andere manier aangeroepen te worden. Wel beginnen de piecharts allemaal rechts onder met het invullen van de data. Hier is nog geen oplossing voor gevonden, ik vermoed dat dit in de standaardinstellingen van de hellocharts library zit.
 
-Verder is er een nieuwe activity aangemaakt. Het is een tweede resultlist activity zodat er vanuit de resultaten en vanuit de rekenschermen naar een andere activity wordt gegaan. Deze twee activities hebben beide een andere vormgeving gekregen.
+Verder is er een nieuwe activity aangemaakt. Het is een tweede resultlist activity zodat er vanuit de resultaten en vanuit de rekenschermen naar een andere activity wordt gegaan. Deze twee activities hebben beide een andere vormgeving gekregen. In onderstaande afbeelding is links de opmaak van de resultListSpecificActivity te zien en rechts de opmaak van de resultListActivity.
 
-(todo: plaatjes toevoegen)
+![alt_text](https://github.com/sannedonker/mprog-final-project/blob/master/doc/result_list_activity.png)
 
 # Weekend
 Er is een nieuwe (effectievere) manier van het shuffelen van de sommen gemaakt. Verder is het vaker voorkomen van moeilijkere sommen geimplementeerd. Er hoeft hiervoor alleen nog maar een boolean worden toegevoegd die vanuit de verschillende activiteiten wordt meegegeven. Deze boolean gaat over het feit of het wel of niet nodig is om op het level te letten.
 
 # Dag 11
-Vandaag is er een nieuwe input methode geimplementeerd voor de CalculateActivity. Tijdens het weekend is er veel om feedback gevraagd en er kwam naar voren dat de 'ok' knop ver van het toetsenbord af was. Vandaar is er ervoor gekozen om een send optie in het toetsenbord te gebruiken.
+Vandaag is er een nieuwe input methode geimplementeerd voor de CalculateActivity. Tijdens het weekend is er veel om feedback gevraagd en er kwam naar voren dat de 'ok' knop ver van het toetsenbord af was. Vandaar is er ervoor gekozen om een send optie in het toetsenbord te gebruiken. In onderstaande afbeelding zijn de verschillende gemaakte schermen van de activity te zien met links de eerste versie en rechts de laatste versie.
 
-(todo: plaatjes toevoegen)
+![alt_text](https://github.com/sannedonker/mprog-final-project/blob/master/doc/calculate_activity.png)
 
 Verder zijn troffeeen geimplementeerd. Je kan nu troffeeen verdienen per tafel, als je een tafel helemaal gememoriseerd hebt, en als je alle tafels helemaal gememoriseerd hebt. Je kan troffeeen niet verliezen. Morgen zal er gewerkt worden aan een onClickListener zodat de troffeeen beter bekeken kunnen worden (uitleg erbij). Ook zal er gewerkt worden aan een manier die de gebruiker verteld dat er een nieuwe troffee is verdiend.
 
@@ -87,4 +83,4 @@ Vandaag zijn de laatste puntjes op de i gezet op het gebied van code. Ook zijn e
 Buiten het werken aan de eigen code is er een teammeeting geweest. Bij deze teammeeting hebben we geprobeerd elkaars apps kapot te maken en zijn we in elkaar repositories gedoken.
 
 # Dag 18
-Vandaag is een nieuwe readme geschreven, een license toegevoegd en een overzicht van alle schermen en bijbehorende navigaties gemaakt.
+Vandaag is een nieuwe readme geschreven, een license toegevoegd, een overzicht van alle schermen en bijbehorende navigaties en een begin aan het final report gemaakt.
