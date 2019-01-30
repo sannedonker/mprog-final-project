@@ -74,3 +74,12 @@ Verder is er oriëntatie gedaan naar het krijgen van confetti over je scherm wan
 
 # Dag 13
 Vandaag is er gewerkt aan het implementeren van confetti. Dit heeft veel langer geduurd dan nodig was. Omdat ik niet doorhad dat de confetti alleen werkte als je hem later aanroept (dus via een button oid). Wel is hierdoor enige kennis opgedaan over het begrijpen van externe libraries en andermans code. De confetti is geimplementeerd als een 'easter egg'. De button is namelijk een image button dus het is niet perse duidelijk dat de confetti optie er is.
+
+# Dag 15
+Vandaag is er gewerkt aan het refactoren van code. Verder is er een begin gemaakt aan het verbeteren van de layout.
+
+# Dag 16
+Vandaag is het refactoren afgemaakt. Ook is er totaal nieuwe layout gemaakt.
+
+# Dag 17
+Vandaag zijn de laatste puntjes op de i gezet op het gebied van code. Ook zijn er unieke afbeeldingen van trofeeën toegevoegd. Verder is er gewerkt aan een overzicht van alle schermen en de navigatie hiertussen.
