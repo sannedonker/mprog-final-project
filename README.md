@@ -16,7 +16,7 @@ Aan iedere categorie is een level verbonden. De levels zijn 1 t/m 4 waarbij groe
 
 ## Visualisatie
 De app met bijbehorende navigatie ziet er als volgt uit, hierbij is 'MainActivity' het begin- en hoofdscherm.
-![alt_text](https://github.com/sannedonker/mprog-final-project/blob/master/doc/final_design.png)
+![alt_text](https://github.com/sannedonker/mprog-final-project/blob/master/doc/final_design_0.png)
 
 ## Demo video
 TODO
