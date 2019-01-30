@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.gebruiker.tafelsoefenen.Databases.DatabaseHelper;
+import com.example.gebruiker.tafelsoefenen.Databases.ExerciseDatabaseHelper;
 import com.example.gebruiker.tafelsoefenen.R;
 import com.example.gebruiker.tafelsoefenen.Databases.TrophyDatabaseHelper;
 
@@ -23,7 +23,7 @@ public class ResetActivity extends AppCompatActivity {
     public void doReset(View view) {
 
         // reset databases to original databases
-        DatabaseHelper dbExercise = DatabaseHelper.getInstance(getApplicationContext());
+        ExerciseDatabaseHelper dbExercise = ExerciseDatabaseHelper.getInstance(getApplicationContext());
         dbExercise.resetLevel();
         TrophyDatabaseHelper dbTrophy = TrophyDatabaseHelper.getInstance(getApplicationContext());
         dbTrophy.resetTrophies();

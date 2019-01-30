@@ -9,18 +9,18 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+public class ExerciseDatabaseHelper extends SQLiteOpenHelper {
 
-    private static DatabaseHelper instance;
+    private static ExerciseDatabaseHelper instance;
     private int amountMultiplications = 10;
 
     // get correct instance of database
-    public static DatabaseHelper getInstance(Context context) {
+    public static ExerciseDatabaseHelper getInstance(Context context) {
         if (instance != null) {
             return instance;
         }
         else {
-            instance = new DatabaseHelper(context, "exercises" ,null, 1);
+            instance = new ExerciseDatabaseHelper(context, "exercises" ,null, 1);
             return instance;
         }
     }
@@ -69,7 +69,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     // constructor
-    public DatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    public ExerciseDatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
 

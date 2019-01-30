@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
-import com.example.gebruiker.tafelsoefenen.Databases.DatabaseHelper;
+import com.example.gebruiker.tafelsoefenen.Databases.ExerciseDatabaseHelper;
 import com.example.gebruiker.tafelsoefenen.Classes.Exercise;
 import com.example.gebruiker.tafelsoefenen.Adapters.PieChartAdapter;
 import com.example.gebruiker.tafelsoefenen.R;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class ResultActivity extends AppCompatActivity {
 
-    private DatabaseHelper db;
+    private ExerciseDatabaseHelper db;
     ArrayList<Exercise> resultList;
 
 
@@ -27,7 +27,7 @@ public class ResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_result);
 
         // get updated database and adapter
-        db = DatabaseHelper.getInstance(getApplicationContext());
+        db = ExerciseDatabaseHelper.getInstance(getApplicationContext());
         PieChartAdapter adapter = new PieChartAdapter(db.selectLevel());
 
         // set the gridview

@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.gebruiker.tafelsoefenen.Databases.DatabaseHelper;
+import com.example.gebruiker.tafelsoefenen.Databases.ExerciseDatabaseHelper;
 import com.example.gebruiker.tafelsoefenen.Classes.Exercise;
 import com.example.gebruiker.tafelsoefenen.R;
 import com.example.gebruiker.tafelsoefenen.Databases.TrophyDatabaseHelper;
@@ -21,7 +21,7 @@ import java.util.HashMap;
 
 public class CalculateActivity extends AppCompatActivity {
 
-    DatabaseHelper db;
+    ExerciseDatabaseHelper db;
     Intent intent;
 
     ArrayList<Integer> previouslyEarned = new ArrayList<>();
@@ -71,7 +71,7 @@ public class CalculateActivity extends AppCompatActivity {
         exercisesList.remove(0);
 
         // get exercises from database
-        db = DatabaseHelper.getInstance(getApplicationContext());
+        db = ExerciseDatabaseHelper.getInstance(getApplicationContext());
         Cursor cursor = db.selectExercises(exercisesList);
         try {
             while (cursor.moveToNext()) {
@@ -257,7 +257,7 @@ public class CalculateActivity extends AppCompatActivity {
 
         // select trophies that user has after calculating and before calculating
         TrophyDatabaseHelper dbTrophy = TrophyDatabaseHelper.getInstance(getApplicationContext());
-        DatabaseHelper dbExercises = DatabaseHelper.getInstance(getApplicationContext());
+        ExerciseDatabaseHelper dbExercises = ExerciseDatabaseHelper.getInstance(getApplicationContext());
         dbTrophy.updateTrophies(dbExercises);
         HashMap<Boolean, ArrayList<Integer>> earnedMap = dbTrophy.checkTrophies(previouslyEarned);
 

@@ -124,7 +124,7 @@ public class TrophyDatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
 
         // convert exercisesList to string
-        String trophiesEarned = DatabaseHelper.convertArrayListIntoString(trophyIds);
+        String trophiesEarned = ExerciseDatabaseHelper.convertArrayListIntoString(trophyIds);
 
         // get cursor from database
         Cursor cursor = db.rawQuery("SELECT * FROM trophies WHERE _id IN " + trophiesEarned, null);
@@ -147,7 +147,7 @@ public class TrophyDatabaseHelper extends SQLiteOpenHelper {
 
 
     // update trophies
-    public void updateTrophies (DatabaseHelper dbExercises) {
+    public void updateTrophies (ExerciseDatabaseHelper dbExercises) {
 
         // get database
         SQLiteDatabase dbTrophies = getWritableDatabase();

@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
-import com.example.gebruiker.tafelsoefenen.Databases.DatabaseHelper;
+import com.example.gebruiker.tafelsoefenen.Databases.ExerciseDatabaseHelper;
 import com.example.gebruiker.tafelsoefenen.R;
 import com.example.gebruiker.tafelsoefenen.Classes.Trophy;
 import com.example.gebruiker.tafelsoefenen.Adapters.TrophyAdapter;
@@ -26,7 +26,7 @@ public class TrophyActivity extends AppCompatActivity {
 
         // get updated database and adapter
         db = TrophyDatabaseHelper.getInstance(getApplicationContext());
-        db.updateTrophies(DatabaseHelper.getInstance(getApplicationContext()));
+        db.updateTrophies(ExerciseDatabaseHelper.getInstance(getApplicationContext()));
         adapter = new TrophyAdapter(TrophyActivity.this, db.selectAll());
 
         // set the gridview
