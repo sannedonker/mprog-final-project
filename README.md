@@ -15,7 +15,7 @@ De app houdt dus bij welke sommen van de tafels de gebruiker al beheersd en welk
 Aan iedere categorie is een level verbonden. De levels zijn 1 t/m 4 waarbij groen 1 is, geel 2, oranje 3 en rood 4. Bij het eerste gebruik van de app kan een begin level bepaald worden. Daarna worden de levels geupdate advh hoe ze de sommen hebben gemaakt. Bij groen is de update -1, bij geel 0, bij oranje +1 en bij rood +2 met minimum level 1 en maximum level 4. De bepaling van deze levels gebeurt achter de schermen, de gebruiker ziet dus alleen de verschillende kleuren wanneer hij/zij de verkregen resultaten bekijkt.
 
 ## Visualisatie
-De app met bijbehorende navigatie ziet er als volgt uit:
+De app met bijbehorende navigatie ziet er als volgt uit, hierbij is 'MainActivity' het begin- en hoofdscherm.
 ![alt_text](https://github.com/sannedonker/mprog-final-project/blob/master/doc/final_design.png)
 
 ## Demo video
