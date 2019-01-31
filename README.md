@@ -25,7 +25,7 @@ De app met bijbehorende navigatie ziet er als volgt uit, hierbij is 'MainActivit
 ![alt_text](https://github.com/sannedonker/mprog-final-project/blob/master/doc/final_design_0.png)
 
 ## Demo video
-TODO
+Klik [hier](https://youtu.be/fiwdxlxSy78) om een demo video van de app te bekijken.
 
 ## Referenties
 Er wordt gebruik gemaakt van de hello-charts library en de confetti library.
